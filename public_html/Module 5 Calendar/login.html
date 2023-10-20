@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Calendar</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="calendar.js" defer></script>
+    </head>
+    <body>
+        <div class="navbar">
+            <nav>
+                <div class="logo">
+                    <a href="calendar.html">CALENDAR</a>
+                </div>
+                <div class="nav-wrapper">
+                    <ul>
+                        <li><a href="calendar.html">Home</a></li>
+                        <li><a href="calendar.html">How to Use</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="login.html">Log In</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="wrapper-login">
+            <header>
+                <p class="login">Calendar Login</p>
+            </header>
+            <div class="login-form">
+                <form action="includes/login.inc.php" method="post">
+                    <input type="text" name="uid" placeholder="Username/Email..."> <br> <br>
+                    <input type="password" name="pwd" placeholder="Password..."> <br> <br>
+                    <button type="submit" name="submit">Login</button>
+                </form>
+                <a href="signup.html">Sign Up</a>
+                <form action="includes/logout.inc.php" method="post">
+                    <button type="submit" name="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

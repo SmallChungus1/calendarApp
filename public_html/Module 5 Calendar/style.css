@@ -126,6 +126,25 @@ body {
     justify-content: space-between;
 }
 
+.wrapper-login {
+    width: 400px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+
+.wrapper-login header{
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+    text-align: center;
+}
+
+header .login {
+    text-align: center;
+    font-size: 1.45rem;
+    font-weight: 800;
+}
+
 header .current-date {
     font-size: 1.45rem;
     font-weight: 500;
@@ -272,3 +291,6 @@ input[type="checkbox"] + label {
     background: #a531df;
 }
 
+.login-form {
+    text-align: center;
+}

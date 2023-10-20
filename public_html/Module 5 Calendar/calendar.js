@@ -13,6 +13,7 @@ let day = date.getDate();
 let today = date.getDay();
 
 let selectedDay = new Date(currYear, currMonth, currDay);
+let selectedDayString = [selectedDay.getFullYear(), selectedDay.getMonth(), selectedDay.getDate()];
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November","December"];
 
