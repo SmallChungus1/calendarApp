@@ -60,13 +60,13 @@ const renderCalendar = (year, month, day) => {
 const renderCalendarEvents = (day, month, dayNumber, year) => {
     currentDay.innerHTML = `${month} ${dayNumber}, ${year}`;
     console.log("RenderCalEvents Selected Date: " + selectedDay.getDate());
+    // Get the events for the selected date
 }
 
 renderCalendar(currYear, currMonth);
 
 prevNext_Month.forEach((icons_month) => {
-    // Fix the icons - separate thje month and day
-    // Also need to cycle for years
+    // Also need to cycle for years !!!!!!!
     icons_month.addEventListener("click", () => {
         currMonth = icons_month.id==="prev_month" ? currMonth - 1 : currMonth + 1;
         if (selectedDay.getMonth() === currMonth) {

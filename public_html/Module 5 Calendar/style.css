@@ -50,12 +50,13 @@ nav ul li a {
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
+    font-family: 'Popins', sans-serif;
     font-size: 14px;
     letter-spacing: 1.2px;
     font-weight: 600;
 }
 
-a:hover {
+nav ul li a:hover {
     text-decoration: underline;
     text-decoration-thickness: 3px;
 }
