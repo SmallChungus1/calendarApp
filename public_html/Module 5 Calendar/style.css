@@ -1,27 +1,101 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-scrolled {
+    background-color: #333; /* add the desired background color */
+}
+
+.logo {
+    float: left;
+    padding: 8px;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.logo a {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0px;
+    text-decoration: none;
+}
+
+nav ul {
+    float: right;
+}
+
+nav ul li {
+    display: inline-block;
+    float: left;
+}
+
+nav ul li:not(:first-child) {
+    margin-left: 48px;
+}
+
+nav ul li:last-child {
+    margin-right: 24px;
+}
+
+nav ul li a {
+    display: inline-block;
+    outline: none;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
 body {
     display: flex;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif; /* or 'Open Sans', 'Montserrat', 'Lato', 'Nunito', 'Raleway', 'Source Sans Pro', 'Ubuntu', etc. */
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     background: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    margin-bottom: 50px;
 }
 
 .flex-container {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    align-content: space-between;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    margin-top: 100px;
+}
+
+.flex-container > * {
+    margin: 0 10px;
+}
+
+.flex-container > * {
+    margin: 0 10px;
+}
+
+.coloumn-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     align-content: space-between;
     justify-content: space-evenly;
     min-height: 100vh;
-}
-
-.flex-container > * {
-    margin: 0 10px;
-}
-
-.flex-container > * {
-    margin: 0 10px;
+    gap: 20px; /* add some space between items */
 }
 
 .wrapper {
@@ -32,6 +106,20 @@ body {
 }
 
 .wrapper header{
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+}
+
+.wrapper-main {
+    width: 900px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+
+.wrapper-main header{
     display: flex;
     align-items: center;
     padding: 25px 30px 10px;
@@ -60,10 +148,44 @@ header .icons span {
     background: white;
 }
 
-.calendar-events {
+header .calendar-header {
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.calendars-available {
+    justify-content: flex-start;
     padding: 0 30px;
+    margin-bottom: 20px;
     height: 350px;
     overflow-y: scroll;
+}
+
+.calendars-available ul {
+    list-style: none;
+}
+
+.calendars-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 30px;
+    margin-bottom: 20px;
+    height: 350px;
+    /* overflow-y: scroll; */
+}
+
+input[type="checkbox"] + label {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.calendar-events {
+    padding: 0 30px;
+    height: 850px;
+    overflow-y: scroll;
+    
 }
 
 .time-lines {
