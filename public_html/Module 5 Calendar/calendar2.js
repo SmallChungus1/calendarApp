@@ -68,27 +68,27 @@ function updateCalendar(){
 			//console.log(days[d].toISOString());
 			
 			if(days[d].getMonth() === currentMonth.month){
-				const oneDay = document.createElement("p");
+				// const oneDay = document.createElement("p");
+				// dateNum = document.createTextNode(days[d].getDate());
+				// oneDay.appendChild(dateNum);
+				// document.getElementById(days[d].getDay()).appendChild(oneDay);
+
+				console.log(weekID)
+				const oneDay = document.createElement("TD");
 				dateNum = document.createTextNode(days[d].getDate());
 				oneDay.appendChild(dateNum);
-				document.getElementById(days[d].getDay()).appendChild(oneDay);
-
-				// console.log(weekID)
-				// const oneDay = document.createElement("p");
-				// dateNum = document.createTextNode(days[d].getDate());
-				// oneDay.appendChild(dateNum);
-				// document.getElementById(weekID).appendChild(oneDay);
+				document.getElementById(weekID).appendChild(oneDay);
 
 			}else{
-				const oneDay = document.createElement("p");
+			// 	const oneDay = document.createElement("p");
+			// 	dateNum = document.createTextNode("-");
+			// 	oneDay.appendChild(dateNum);
+			// document.getElementById(days[d].getDay()).appendChild(oneDay);
+
+				const oneDay = document.createElement("TD");
 				dateNum = document.createTextNode("-");
 				oneDay.appendChild(dateNum);
-			document.getElementById(days[d].getDay()).appendChild(oneDay);
-
-				// const oneDay = document.createElement("p");
-				// dateNum = document.createTextNode(days[d].getDate());
-				// oneDay.appendChild(dateNum);
-				// document.getElementById(weekID).appendChild(oneDay);
+				document.getElementById(weekID).appendChild(oneDay);
 
 			}
 			
@@ -100,9 +100,11 @@ function updateCalendar(){
 
 function handleClick(){
 	for(let i = 0; i < 7; i++){
-		let dayOfWeek = document.getElementById(i);
+
+		weekID = "w"+i
+		let dayOfWeek = document.getElementById(weekID);
 		//console.log(dayOfWeek);
-		let currDay = dayOfWeek.getElementsByTagName("p");
+		let currDay = dayOfWeek.getElementsByTagName("TD");
 		//console.log(currDay.length);
 		for (let k = 0; k<currDay.length; k++){
 			//console.log(currDay[i])
@@ -119,9 +121,10 @@ function handleClick(){
 
 function clearCal(){
 	for(let i = 0; i < 7; i++){
-		let dayOfWeek = document.getElementById(i);
+		weekID = "w"+i
+		let dayOfWeek = document.getElementById(weekID);
 		//console.log(dayOfWeek);
-		let currDay = Array.from(dayOfWeek.getElementsByTagName("p"));
+		let currDay = Array.from(dayOfWeek.getElementsByTagName("TD"));
 		currDay.forEach(aChild => {
 			aChild.remove();
 		})

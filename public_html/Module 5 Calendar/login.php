@@ -47,8 +47,8 @@ if(!$row){
     $databasePWD = $row['userPassword'];
     //$password = password_hash($password, PASSWORD_DEFAULT);
     // echo"password: $password databasepwd: $databasePWD";
-    $hashedPassword = password_hash($databasePWD, PASSWORD_DEFAULT);
-    if(password_verify($password, $hashedPassword)){
+    //$hashedPassword = password_hash($databasePWD, PASSWORD_DEFAULT);
+    if(password_verify($password, $databasePWD)){
         session_start();
         $_SESSION["currUser"] = $userName;
         $_SESSION["LoggedIn"] = true;
