@@ -11,7 +11,9 @@ $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str, true);
 
 $date = $json_obj['date'];
-if($_SESSION["LoggedIn"]){
+
+
+if(!$_SESSION["LoggedIn"]){
     echo json_encode(array(
         "success" => false,
         "message" => "Not Logged In, Log In To View events"
@@ -22,7 +24,7 @@ if($_SESSION["LoggedIn"]){
 }
 
 
-$stmt = $mysqli->prepare("select title, eventDate, timeStart, timeEnd, description, owner from events where eventDate='$userName'");
+$stmt = $mysqli->prepare("select title, eventDate, timeStart, timeEnd, description, owner from events where eventDate='$date'");
 if(!$stmt){
     
 

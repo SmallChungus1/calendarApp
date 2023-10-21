@@ -135,10 +135,12 @@ function handleClick(){
 		.then(data=> {
 			if(data.success){
 				alert("Data Retrival Successful");
-				// document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
-				// document.getElementById("currUser").innerText=userName;
-				// document.getElementById("calLogin").remove();
-				// document.getElementById("calSignUp").remove();
+
+				const anEvent = document.createElement("li");
+				title = document.createTextNode("Hello");
+				anEvent.appendChild(title);
+				document.getElementById("EventList").appendChild(anEvent);
+				
 			}else{
 				alert(`Data Retrival not successful ${data.message}`);
 			}
