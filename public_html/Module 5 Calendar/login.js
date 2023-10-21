@@ -15,6 +15,7 @@ function loginUser(event){
         if(loginData.success){
             alert("Login Successful");
             document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
+            document.getElementById("currUser").innerText=userName;
             document.getElementById("calLogin").remove();
             document.getElementById("calSignUp").remove();
         }else{

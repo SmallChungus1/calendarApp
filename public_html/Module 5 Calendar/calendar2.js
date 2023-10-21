@@ -73,7 +73,7 @@ function updateCalendar(){
 				// oneDay.appendChild(dateNum);
 				// document.getElementById(days[d].getDay()).appendChild(oneDay);
 
-				console.log(weekID)
+				//console.log(weekID)
 				const oneDay = document.createElement("TD");
 				dateNum = document.createTextNode(days[d].getDate());
 				oneDay.appendChild(dateNum);
@@ -89,7 +89,7 @@ function updateCalendar(){
 				dateNum = document.createTextNode("-");
 				oneDay.appendChild(dateNum);
 				document.getElementById(weekID).appendChild(oneDay);
-
+						
 			}
 			
 		}
@@ -99,6 +99,7 @@ function updateCalendar(){
 
 
 function handleClick(){
+	
 	for(let i = 0; i < 7; i++){
 
 		weekID = "w"+i
@@ -113,10 +114,40 @@ function handleClick(){
 				document.getElementById("calDay").innerText = currDay[k].innerText;
 				document.getElementById("calMonth").innerText = currentMonth.month+1;
 				document.getElementById("calYear").innerText = currentMonth.year;
+				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
+				getEvents();
+				console.log(fullDate);
 			}, false);
 		}
 	}
 
+
+	function getEvents(){
+		const currDate = fullDate;
+		//const userName = document.getElementById("currUser");
+		const data = {'date': currDate};
+		fetch("eventServe.php", {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers:{'content-type': 'application/json'}
+		})
+		.then(response=>response.json())
+		.then(data=> {
+			if(data.success){
+				alert("Data Retrival Successful");
+				// document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
+				// document.getElementById("currUser").innerText=userName;
+				// document.getElementById("calLogin").remove();
+				// document.getElementById("calSignUp").remove();
+			}else{
+				alert(`Data Retrival not successful ${data.message}`);
+			}
+		}  
+			)
+		.catch(err => console.error(err))
+
+
+	}
 }
 
 function clearCal(){
