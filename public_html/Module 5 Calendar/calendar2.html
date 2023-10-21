@@ -6,18 +6,41 @@
     <title>Calendar</title>
 
     <script src="calendar2.js" defer></script>
+    <script src="login.js" defer></script>
+    <link rel="stylesheet" href="calendar2.css">
 
 </head>
 <body>
-    <button id ="prevMonth">Previous Month</button>
-    <button id ="nextMonth">Next Month</button>
+   
     
+    <div class="container" id ="calLogin">
+        <h3>Log In:</h3>
+        <input type="text" id="username" placeholder="Username" required/><br>
+        <input type="password" id="password" placeholder="Password" required/>
+        <button id="loginBtn">Log In</button>
+    </div>
+
+    <div class="container" id ="calSignUp">
+        <h3>Sign Up:</h3>
+        <input type="text" id="usernameReg" placeholder="Username" required/><br>
+        <input type="password" id="passwordReg" placeholder="Password" required/><br>
+        <input type="password" id="passwordConfirm" placeholder="Confirm Password"required />
+        <button id="signUpBtn">SignUp</button>
+    </div>
+        
+
     <div id="calendarBody">
+
+        <button id ="prevMonth">Previous Month</button>
+        <button id ="nextMonth">Next Month</button>
 
         <P>Current Year: <b id ="CalYear"></b></P>
         <p>Current Month: <b id ="CalMonth"></b></p>
         <table id = "calTable">
             <tr>
+            <!-- <th id ="weeks"> Weeks: 
+               
+            </th> -->
             <th id="0"><strong>Sun</strong></th>
             <th id="1"><strong>Mon</strong></th>
             <th id="2"><strong>Tue</strong></th>
@@ -26,18 +49,35 @@
             <th id="5"><strong>Fri</strong></th>
             <th id="6"><strong>Sat</strong></th>
             </tr>
+            <!-- <tr id="w0">
+                <td><strong>Week1: </strong></td>
+            </tr>
+            <tr id="w1">
+                <td><strong>Week2: </strong></td>
+            </tr>
+            <tr id="w2">
+                <td><strong>Week3: </strong></td>
+            </tr>
+            <tr id="w3">
+                <td><strong>Week4: </strong></td>
+            </tr>
+            <tr id="w4">
+                <td><strong>Week5: </strong></td>
+            </tr> -->
+            
         
-        
+        </table>
     </div>
     <br>
     <P id = "test">Testing</P>
 
-    <div class="container" id="EventDisplay">'
+    <div class="container" id="EventDisplay">
+        <P><b>Event View:</b></P>
         <p>Day: <b id ="calDay"></b></p>
         <p>Month: <b id ="calMonth"></b></p>
         <p>Year: <b id ="calYear"></b></p>
         <p>List of Events: </p>
-        
+
     </div>
 </body>
 

@@ -2,6 +2,33 @@
 let currentMonth = new Month(2023, 9); // October 2023
 
 // Change the month when the "next" button is pressed
+
+document.addEventListener("DOMContentLoaded", updateCalendar, false);
+document.addEventListener("DOMContentLoaded", handleClick, false);
+
+
+//for use later: show/hide login/signups
+
+// let regStatus = true;
+
+// document.getElementById("loginTextCue").addEventListener("click", ()=>{
+// 	if (regStatus){
+// 		regStatus = false;
+// 	}else{
+// 		regStatus = true;
+// 	}
+	
+// }, false);
+
+
+// 	if(regStatus){
+// 		document.getElementById("calSignUp").style.display='none';
+		
+// 	}else if (!regStatus){
+		
+// 		document.getElementById("calLogin").style.display='none';
+// 	}
+
 document.getElementById("nextMonth").addEventListener("click", function(event){
 	currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
@@ -28,6 +55,9 @@ function updateCalendar(){
 	
 	for(let w in weeks){
 		let days = weeks[w].getDates();
+		// console.log("weeks: "+w);
+		weekID = "w"+w;
+	
 		// days contains normal JavaScript Date objects.
 		
 		//console.log("Week starting on "+days[0]);
@@ -41,12 +71,25 @@ function updateCalendar(){
 				const oneDay = document.createElement("p");
 				dateNum = document.createTextNode(days[d].getDate());
 				oneDay.appendChild(dateNum);
-			document.getElementById(days[d].getDay()).appendChild(oneDay);
+				document.getElementById(days[d].getDay()).appendChild(oneDay);
+
+				// console.log(weekID)
+				// const oneDay = document.createElement("p");
+				// dateNum = document.createTextNode(days[d].getDate());
+				// oneDay.appendChild(dateNum);
+				// document.getElementById(weekID).appendChild(oneDay);
+
 			}else{
 				const oneDay = document.createElement("p");
 				dateNum = document.createTextNode("-");
 				oneDay.appendChild(dateNum);
 			document.getElementById(days[d].getDay()).appendChild(oneDay);
+
+				// const oneDay = document.createElement("p");
+				// dateNum = document.createTextNode(days[d].getDate());
+				// oneDay.appendChild(dateNum);
+				// document.getElementById(weekID).appendChild(oneDay);
+
 			}
 			
 		}
