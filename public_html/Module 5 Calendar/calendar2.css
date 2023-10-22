@@ -105,6 +105,11 @@ body {
     padding: 0px 30px 10px;
 }
 
+.event-detail-display-form {
+    padding: 0px 30px 10px;
+    display: none;
+}
+
 #accountLogin{
     /* display: flex; */
     margin: 0 auto;
@@ -140,6 +145,7 @@ body {
 
 .calendar table td, th {
     padding-bottom: 20px;
+    vertical-align: middle;
 }
 
 .activeEventDates{
@@ -148,3 +154,10 @@ body {
 }
 
 /* Login */
+#deleteEventBtn {
+
+}
+
+#deleteEventBtn {
+    display: none;
+}

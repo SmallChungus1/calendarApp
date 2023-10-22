@@ -7,6 +7,13 @@ let loggedInStatus = false;
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("DOMContentLoaded", handleClick, false);
+
+editEventBtn = document.getElementById("editEventBtn");
+editEventBtn.addEventListener("click", showEdit, false);
+
+delateEventBtn = document.getElementById("deleteEventBtn");
+delateEventBtn.addEventListener("click", deleteEvent, false);
+
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
 
@@ -204,18 +211,25 @@ function handleClick(){
 	}
 }
 
-function showEvent(){
-	var eventDetailDisplay = document.getElementById("eventDetailDisplay");
-	var display = 0;
-	function hideShow() {
-		if (display == 1) {
-			div.style.display = "block";
-			display = 0;
-		} else {
-			div.style.display = "none";
-			display = 1;
-		}
+function showEdit() {
+	const eventDetailDisplay = document.getElementsByClassName("event-detail-display")[0];
+	const eventDetailDisplayForm = document.getElementsByClassName("event-detail-display-form")[0];
+	const deleteEventBtn = document.getElementById("deleteEventBtn");
+	
+	if (eventDetailDisplay.style.display === "none") {
+		eventDetailDisplay.style.display = "block";
+		eventDetailDisplayForm.style.display = "none";
+		deleteEventBtn.style.display = "none";
+	} else {
+		eventDetailDisplay.style.display = "none";
+		eventDetailDisplayForm.style.display = "block";
+		deleteEventBtn.style.display = "block";
 	}
+}
+
+
+function deleteEvent(){
+	// THIS SHOULD DELETE THE EVENT FROM THE DATABASE
 }
 
 
@@ -225,6 +239,13 @@ function cleardisplayEvents(){
 	document.getElementById("eventDetailTS").innerText="";
 	document.getElementById("eventDetailTE").innerText="";
 	document.getElementById("eventDetailDesc").innerText="";
+
+	document.getElementById("event-title").value = "";
+	document.getElementById("event-id").value = "";
+	document.getElementById("event-date").value = "";
+	document.getElementById("event-start").value = "";
+	document.getElementById("event-end").value = "";
+	document.getElementById("event-description").value = "";
 }
 
 function clearEventList(){
