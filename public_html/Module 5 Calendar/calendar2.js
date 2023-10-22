@@ -136,10 +136,10 @@ function handleClick(){
 			if(data.success){
 				alert("Data Retrival Successful");
 
-				const anEvent = document.createElement("li");
-				title = document.createTextNode("Hello");
-				anEvent.appendChild(title);
-				document.getElementById("EventList").appendChild(anEvent);
+				// const anEvent = document.createElement("li");
+				// title = document.createTextNode("Hello");
+				// anEvent.appendChild(title);
+				// document.getElementById("EventList").appendChild(anEvent);
 				
 			}else{
 				alert(`Data Retrival not successful ${data.message}`);
