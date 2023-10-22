@@ -1,22 +1,39 @@
-
+// Safe from XSS attacks; that is, all content is escaped on output (3 points)
+// Safe from SQL Injection attacks (2 points)
+// CSRF tokens are passed when adding/editing/deleting events (3 points)
+// Session cookie is HTTP-Only (3 points)
 
 
 const createEventBtn = document.getElementById("createEventBtn");
-const eventTitle = document.getElementById("create-event-title");
-const eventDate = document.getElementById("create-event-date");
-const eventTS = document.getElementById("create-event-start");
-const eventTE = document.getElementById("create-event-end");
-const eventDesc = document.getElementById("create-event-description");
+
+
 
 createEventBtn.addEventListener("click", ()=>{
-    const data = {"eventTitle": userName};
+const eventTitle = document.getElementById("create-event-title").value;
+const eventDate = document.getElementById("create-event-date").value;
+const eventTS = document.getElementById("create-event-start").value;
+const eventTE = document.getElementById("create-event-end").value;
+const eventDesc = document.getElementById("create-event-description").value;
+const username = document.getElementById("currUser").innerText;
+    console.log("username: ", username);
+    console.log("eventTitle: ", eventTitle);
+    console.log("date: ", eventDate);
+    console.log("clicked!");
+    const data = {"eventTitle": eventTitle, "eventDate":eventDate,"eventTS":eventTS,"eventTE":eventTE,"eventDesc":eventDesc, "username":username };
     fetch("addEvent.php", {
         method: 'POST',
-        body: JSON.stringify(loginData),
+        body: JSON.stringify(data),
         headers:{'content-type': 'application/json'}
     })
     .then(response=>response.json())
-    .then(data)
+    .then(data=>{
+        if(data.success){
+            alert(data.message);
+        }else{
+            alert(data.message);
+        }
+    })
+    .catch(err => console.error(err));
 
 
 
