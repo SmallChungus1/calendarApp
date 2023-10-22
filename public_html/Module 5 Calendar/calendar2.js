@@ -113,11 +113,14 @@ function handleClick(){
 		//console.log(currDay.length);
 		for (let k = 0; k<currDay.length; k++){
 			//console.log(currDay[i])
+			// fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
+			fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
+			colorCalendar(currDay[k]);
+
 			currDay[k].addEventListener("click",function(){
-				//alert(currDay[k].innerText);
-				// document.getElementById("calDay").innerText = currDay[k].innerText;
-				// document.getElementById("calMonth").innerText = months[currentMonth.month];
-				// document.getElementById("calYear").innerText = currentMonth.year;
+				
+
+
 				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 				getEvents();
 				console.log(fullDate);
@@ -125,7 +128,23 @@ function handleClick(){
 		}
 	}
 
+	function colorCalendar(currDay){
+		const data = {'date': fullDate};
+		fetch("eventServe.php", {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers:{'content-type': 'application/json'}
+		})
+		.then(response=>response.json())
+		.then(data => {
+			if(data.success){
+				currDay.classList.add("activeEventDates");
+			}
+			
+		})
+		.catch(err => console.error(err))
 
+	}
 	function getEvents(){
 		clearEventList();
 		const currDate = fullDate;
@@ -147,12 +166,13 @@ function handleClick(){
 				// title = document.createTextNode("Hello");
 				// anEvent.appendChild(title);
 				// document.getElementById("EventList").appendChild(anEvent);
+				
 				document.getElementById("eventDate").innerText=dataMsgArry[0]["eventDate"];
 				for (let i = 0; i<dataMsgArry.length; i++){
 					const singleEvent = dataMsgArry[i];
 					const anEvent = document.createElement("li");
 					eventTitle = document.createTextNode(singleEvent["title"]);
-					// oneDay.classList.add("activeEventDates");
+					
 					anEvent.appendChild(eventTitle);
 					anEvent.addEventListener("click", () => {
 						cleardisplayEvents();

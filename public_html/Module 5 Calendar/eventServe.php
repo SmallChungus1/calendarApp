@@ -52,7 +52,7 @@ while($row = $result->fetch_assoc()){
 if(!$responseData){
     echo json_encode(array(
         "success" => false,
-        "message" => "Event not found" 
+        "message" => "Event not found!" 
     ));
 }else{
     echo json_encode(array(
