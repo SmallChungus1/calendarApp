@@ -6,7 +6,8 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("DOMContentLoaded", handleClick, false);
-
+document.getElementById("calYear").innerText = currentMonth.year;
+document.getElementById("calMonth").innerText = months[currentMonth.month];
 
 //for use later: show/hide login/signups
 
@@ -35,8 +36,8 @@ document.getElementById("nextMonth").addEventListener("click", function(event){
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
 	handleClick();
 	console.log("The new month is "+currentMonth.month+" "+currentMonth.year);
-	document.getElementById("CalYear").innerText = currentMonth.year;
-	document.getElementById("CalMonth").innerText = currentMonth.month+1;
+	document.getElementById("calYear").innerText = currentMonth.year;
+	document.getElementById("calMonth").innerText = months[currentMonth.month];
 }, false);
 
 document.getElementById("prevMonth").addEventListener("click", function(event){
@@ -44,8 +45,8 @@ document.getElementById("prevMonth").addEventListener("click", function(event){
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
 	handleClick();
 	console.log("The new month is "+currentMonth.month+" "+currentMonth.year);
-	document.getElementById("CalYear").innerText = currentMonth.year;
-	document.getElementById("CalMonth").innerText = currentMonth.month+1;
+	document.getElementById("calYear").innerText = currentMonth.year;
+	document.getElementById("calMonth").innerText = months[currentMonth.month];
 }, false);
 
 // This updateCalendar() function only alerts the dates in the currently specified month.  You need to write
@@ -76,8 +77,10 @@ function updateCalendar(){
 
 				//console.log(weekID)
 				const oneDay = document.createElement("TD");
+				
 				dateNum = document.createTextNode(days[d].getDate());
 				oneDay.appendChild(dateNum);
+				
 				document.getElementById(weekID).appendChild(oneDay);
 
 			}else{
@@ -138,6 +141,7 @@ function handleClick(){
 			if(data.success){
 				alert(`Data retrival successful`);
 				dataMsgArry = data.message;
+
 				// alert(dataMsgArry["eventDate"]);
 				// const anEvent = document.createElement("li");
 				// title = document.createTextNode("Hello");
@@ -148,7 +152,7 @@ function handleClick(){
 					const singleEvent = dataMsgArry[i];
 					const anEvent = document.createElement("li");
 					eventTitle = document.createTextNode(singleEvent["title"]);
-					
+					// oneDay.classList.add("activeEventDates");
 					anEvent.appendChild(eventTitle);
 					anEvent.addEventListener("click", () => {
 						cleardisplayEvents();

@@ -120,3 +120,8 @@ body {
     padding-bottom: 10px;
 }
 
+.activeEventDates{
+    background-color: blanchedalmond;
+    color: aqua;
+
+}
