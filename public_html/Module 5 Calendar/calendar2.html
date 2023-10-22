@@ -4,92 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
-
+    <link rel="stylesheet" type="text/css" href="calendar2.css">
     <script src="calendar2.js" defer></script>
     <script src="login.js" defer></script>
-    <link rel="stylesheet" href="calendar2.css">
 
 </head>
 <body>
-   
-    <div id="heading">
-        <h2 id="welcomeMsg">Welcome! Guest (You need to login. User: Bob Password: 123)</h2>
+    <div class="navbar">
+        <nav>
+            <div class="logo">
+                <a href="calendar.html">CALENDAR</a>
+            </div>
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="calendar.html">Home</a></li>
+                    <li><a href="calendar.html">How to Use</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Log In</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-    
-    <div class="container" id ="calLogin">
-        <h3>Log In:</h3>
-        <input type="text" id="username" placeholder="Username" required/><br>
-        <input type="password" id="password" placeholder="Password" required/>
-        <button id="loginBtn">Log In</button>
+    <div class="wrapper" id="accountLogin">
+        <div id="heading">
+            <h2 id="welcomeMsg">Welcome! Guest (You need to login. User: Bob Password: 123)</h2>
+        </div>
+
+        <div class="container" id ="calLogin">
+            <h3>Log In:</h3>
+            <input type="text" id="username" placeholder="Username" required/><br>
+            <input type="password" id="password" placeholder="Password" required/>
+            <button id="loginBtn">Log In</button>
+        </div>
+
+        <div class="container" id ="calSignUp">
+            <h3>Sign Up:</h3>
+            <input type="text" id="usernameReg" placeholder="Username" required/><br>
+            <input type="password" id="passwordReg" placeholder="Password" required/><br>
+            <input type="password" id="passwordConfirm" placeholder="Confirm Password"required />
+            <button id="signUpBtn">SignUp</button>
+        </div>
     </div>
 
-    <div class="container" id ="calSignUp">
-        <h3>Sign Up:</h3>
-        <input type="text" id="usernameReg" placeholder="Username" required/><br>
-        <input type="password" id="passwordReg" placeholder="Password" required/><br>
-        <input type="password" id="passwordConfirm" placeholder="Confirm Password"required />
-        <button id="signUpBtn">SignUp</button>
-    </div>
+
+    <button onclick="hideShow()">Hide and Show</button>
+
+    <script>
+        // we need to implement this function to hide and show the login and sign up divs if a user is logged in and make the logout page appear
+        // This should probably be done in the login.js file
+        var div = document.getElementById("calSignUp");
+        var div2 = document.getElementById("calLogin");
+
+        var display = 0;
+        function hideShow() {
+            if (display == 1) {
+                div.style.display = "block";
+                div2.style.display = "block";
+                display = 0;
+            } else {
+                div.style.display = "none";
+                div2.style.display = "none";
+                display = 1;
+            }
+        }
+    </script>
         
+    <div class="main-section">
+        <div class="wrapper" id="calendarBody">
+            <header>
+                <p class="current-month-year">Month Year</p>
+                <div class="icons_month"> 
+                    <button id ="prevMonth">&lt;</button>
+                    <button id ="today">Today</button>
+                    <button id ="nextMonth">&gt;</button>
+                </div>
+            </header>
 
-    <div id="calendarBody">
+            <!-- <P>Current Year: <b id ="CalYear"></b></P>
+            <p>Current Month: <b id ="CalMonth"></b></p> -->
+            <div class="calendar">
+                <table id = "calTable">
+                    <tr>
+                    <!-- <th id ="weeks"> Weeks: 
+                    
+                    </th> -->
+                    <th id="0"><strong>Sun</strong></th>
+                    <th id="1"><strong>Mon</strong></th>
+                    <th id="2"><strong>Tue</strong></th>
+                    <th id="3"><strong>Wed</strong></th>
+                    <th id="4"><strong>Thu</strong></th>
+                    <th id="5"><strong>Fri</strong></th>
+                    <th id="6"><strong>Sat</strong></th>
+                    </tr>
 
-        <button id ="prevMonth">Previous Month</button>
-        <button id ="nextMonth">Next Month</button>
+                    <tr id="w0"></tr>
+                    <tr id="w1"></tr>
+                    <tr id="w2"></tr>
+                    <tr id="w3"></tr>
+                    <tr id="w4"></tr>
+                    <tr id="w5"></tr>
+                    <tr id="w6"></tr>
+                    <!-- <tr id="w0">
+                        <td><strong>Week1: </strong></td>
+                    </tr>
+                    <tr id="w1">
+                        <td><strong>Week2: </strong></td>
+                    </tr>
+                    <tr id="w2">
+                        <td><strong>Week3: </strong></td>
+                    </tr>
+                    <tr id="w3">
+                        <td><strong>Week4: </strong></td>
+                    </tr>
+                    <tr id="w4">
+                        <td><strong>Week5: </strong></td>
+                    </tr> -->
+                    
+                </table>
+            </div>
+        </div>
+        <br>
+        <P id="test">Testing</P>
 
-        <P>Current Year: <b id ="CalYear"></b></P>
-        <p>Current Month: <b id ="CalMonth"></b></p>
-        <table id = "calTable">
-            <tr>
-            <!-- <th id ="weeks"> Weeks: 
-               
-            </th> -->
-            <th id="0"><strong>Sun</strong></th>
-            <th id="1"><strong>Mon</strong></th>
-            <th id="2"><strong>Tue</strong></th>
-            <th id="3"><strong>Wed</strong></th>
-            <th id="4"><strong>Thu</strong></th>
-            <th id="5"><strong>Fri</strong></th>
-            <th id="6"><strong>Sat</strong></th>
-            </tr>
+        <div class="wrapper" id="EventDisplay">
+            <P><b>Event View for user:</b></P>
+            <P><b id="currUser"></b></P>
+            <p>Day: <b id ="calDay"></b></p>
+            <p>Month: <b id ="calMonth"></b></p>
+            <p>Year: <b id ="calYear"></b></p>
+            <ul id="EventList">List of Events: </ul>
 
-            <tr id="w0"></tr>
-            <tr id="w1"></tr>
-            <tr id="w2"></tr>
-            <tr id="w3"></tr>
-            <tr id="w4"></tr>
-            <tr id="w5"></tr>
-            <tr id="w6"></tr>
-            <!-- <tr id="w0">
-                <td><strong>Week1: </strong></td>
-            </tr>
-            <tr id="w1">
-                <td><strong>Week2: </strong></td>
-            </tr>
-            <tr id="w2">
-                <td><strong>Week3: </strong></td>
-            </tr>
-            <tr id="w3">
-                <td><strong>Week4: </strong></td>
-            </tr>
-            <tr id="w4">
-                <td><strong>Week5: </strong></td>
-            </tr> -->
-            
-        
-        </table>
-    </div>
-    <br>
-    <P id = "test">Testing</P>
-
-    <div class="container" id="EventDisplay">
-        <P><b>Event View for user:</b></P>
-        <P><b id="currUser"></b></P>
-        <p>Day: <b id ="calDay"></b></p>
-        <p>Month: <b id ="calMonth"></b></p>
-        <p>Year: <b id ="calYear"></b></p>
-        <ul id="EventList">List of Events: </ul>
-
+        </div>
     </div>
 </body>
 

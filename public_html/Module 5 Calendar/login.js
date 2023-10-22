@@ -21,8 +21,6 @@ function loginUser(event){
         }else{
             alert(`Login not successful ${loginData.message}`);
         }
-        
-        
 
     }  
         )
