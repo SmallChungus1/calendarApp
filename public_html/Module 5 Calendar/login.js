@@ -15,6 +15,7 @@ function loginUser(event){
             alert(`Login Successful ${loginData.message}`);
             document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
             document.getElementById("currUser").innerText=userName;
+            loggedInStatus = true;
             document.getElementById("calLogin").remove();
             document.getElementById("calSignUp").remove();
         }else{
@@ -44,6 +45,7 @@ function signUpUser(event){
     .then(loginData=> {
         if(loginData.success){
             alert("SignUp Successful");
+            loggedInStatus = true;
             document.getElementById("welcomeMsg").innerText="SignUp Successfull. Login to continue";
 
         }else{
