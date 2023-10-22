@@ -1,5 +1,6 @@
 
 let currentMonth = new Month(2023, 9); // October 2023
+const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November","December"];
 
 // Change the month when the "next" button is pressed
 
@@ -112,7 +113,7 @@ function handleClick(){
 			currDay[k].addEventListener("click",function(){
 				//alert(currDay[k].innerText);
 				document.getElementById("calDay").innerText = currDay[k].innerText;
-				document.getElementById("calMonth").innerText = currentMonth.month+1;
+				document.getElementById("calMonth").innerText = months[currentMonth.month];
 				document.getElementById("calYear").innerText = currentMonth.year;
 				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 				getEvents();
@@ -172,9 +173,9 @@ function clearCal(){
 }
 
 
-document.getElementById("test").addEventListener("click", function(){
-	alert("Clicked");
-}, false);
+// document.getElementById("test").addEventListener("click", function(){
+// 	alert("Clicked");
+// }, false);
 
 
 

@@ -72,7 +72,7 @@
     <div class="main-section">
         <div class="wrapper" id="calendarBody">
             <header>
-                <p class="current-month-year">Month Year</p>
+                <p class="current-month-year"> <span id="calMonth"></span>  <span id="calYear"></span></p>
                 <div class="icons_month"> 
                     <button id ="prevMonth">&lt;</button>
                     <button id ="today">Today</button>
@@ -124,18 +124,21 @@
             </div>
         </div>
         <br>
-        <P id="test">Testing</P>
 
         <div class="wrapper" id="EventDisplay">
             <P><b>Event View for user:</b></P>
             <P><b id="currUser"></b></P>
             <p>Day: <b id ="calDay"></b></p>
-            <p>Month: <b id ="calMonth"></b></p>
-            <p>Year: <b id ="calYear"></b></p>
+            <!-- <p>Month: <b id ="calMonth"></b></p>
+            <p>Year: <b id ="calYear"></b></p> -->
             <ul id="EventList">List of Events: </ul>
+
+
 
         </div>
     </div>
+
+    <p id="test">testing</p>
 </body>
 
 
