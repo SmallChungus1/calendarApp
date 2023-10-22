@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", handleClick, false);
 editEventBtn = document.getElementById("editEventBtn");
 editEventBtn.addEventListener("click", showEdit, false);
 
+createEventBtn = document.getElementById("addEventBtn");
+createEventBtn.addEventListener("click", showCreate, false);
+
 delateEventBtn = document.getElementById("deleteEventBtn");
 delateEventBtn.addEventListener("click", deleteEvent, false);
 
@@ -156,7 +159,6 @@ function handleClick(){
 	function getEvents(){
 		clearEventList();
 		const currDate = fullDate;
-		//const userName = document.getElementById("currUser");
 		const data = {'date': currDate};
 		fetch("eventServe.php", {
 			method: 'POST',
@@ -166,10 +168,10 @@ function handleClick(){
 		.then(response=>response.json())
 		.then(data=> {
 			if(data.success){
-				alert(`Data retrival successful`);
+				// alert(`Data retrival successful`);
 				dataMsgArry = data.message;
 
-				alert(dataMsgArry["eventDate"]);
+				// alert(dataMsgArry["eventDate"]);
 				
 				document.getElementById("eventDate").innerText=dataMsgArry[0]["eventDate"];
 				for (let i = 0; i<dataMsgArry.length; i++){
@@ -227,6 +229,20 @@ function showEdit() {
 	}
 }
 
+function showCreate() {
+	const listEvents = document.getElementsByClassName("list-events")[0];
+	const createEvent = document.getElementsByClassName("create-event")[0];
+	
+	if (listEvents.style.display === "none") {
+		listEvents.style.display = "block";
+		createEvent.style.display = "none";
+	} else {
+		listEvents.style.display = "none";
+		createEvent.style.display = "block";
+	}
+}
+
+
 
 function deleteEvent(){
 	// THIS SHOULD DELETE THE EVENT FROM THE DATABASE
@@ -270,6 +286,7 @@ function clearCal(){
 	}
 }
 
+//Don't touch this: weather functions
 (function(){
     Date.prototype.deltaDays=function(c){
         return new Date(this.getFullYear(),this.getMonth(),this.getDate()+c)};
@@ -294,6 +311,10 @@ function Month(c,b){this.year=c;
     this.getDateObject=function(a){return new Date(this.year,this.month,a)};
     this.getWeeks=function(){var a=this.getDateObject(1),b=this.nextMonth().getDateObject(0),c=[],a=new Week(a);
         for(c.push(a);!a.contains(b);)a=a.nextWeek(),c.push(a);return c}};
+
+//Don't touch above: weather functions
+
+
 
 // Navbar
 const navbar = document.querySelector('.navbar');

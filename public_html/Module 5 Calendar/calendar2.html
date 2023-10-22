@@ -11,9 +11,6 @@
 
 </head>
 <body>
-    <input type="date" id="dateInput" value = "2023-10-12"><br>
-    <input type="time" id="timeInput" value = "20:20:06" ><br>
-    <button id = "random">Random SHit</button>
     <div class="navbar">
         <nav>
             <div class="logo">
@@ -21,11 +18,11 @@
             </div>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="calendar.html">Home</a></li>
-                    <li><a href="calendar.html">How to Use</a></li>
+                    <!-- <li><a href="calendar.html">Home</a></li> -->
+                    <!-- <li><a href="calendar.html">How to Use</a></li> -->
                     <li><a href="about.html">About</a></li>
-                    <li><a href="login.html">Log In</a></li>
-                    <li><a id="LogOutBtn">Log out</a></li>
+                    <!-- <li><a href="login.html">Log In</a></li> -->
+                    <li><a id="logOutBtn">Log out</a></li>
                 </ul>
             </div>
         </nav>
@@ -33,7 +30,7 @@
     <div class="wrapper" id="accountLogin">
         <div class="account-content">
             <heading>
-                <h2 id="welcomeMsg">Welcome Guest (You need to login. User: Bob Password: 123)</h2>
+                <h2 id="welcomeMsg">Welcome <b id="currUser"></b></h2>
             </heading>
 
             <div class="container" id ="calLogin">
@@ -56,7 +53,7 @@
 
     <button onclick="hideShow()">Hide and Show</button>
 
-    <script>
+    <!-- <script>
         // we need to implement this function to hide and show the login and sign up divs if a user is logged in and make the logout page appear
         // This should probably be done in the login.js file
         var div = document.getElementById("calSignUp");
@@ -75,7 +72,7 @@
             }
         }
     </script>
-        
+         -->
     <div class="main-section">
         <div class="wrapper" id="calendarBody">
             <header>
@@ -117,16 +114,28 @@
 
         <div class="wrapper" id="EventDisplay">
             <header>
-                <h2><b id ="eventDate"></b></h2>
+                <h2>Events on <b id ="eventDate"></b></h2>
                 <button id="addEventBtn">Add Event</button>
             </header>
             <div class="event-display">
-                
-                <P>Events List View for user: <b id="currUser"></b></P>
-                
-                <!-- <p>Month: <b id ="calMonth"></b></p>
-                <p>Year: <b id ="calYear"></b></p> -->
-                <ul id="EventList">List of Events: <span id="eventListInnerText"></span></ul>
+                <div class="list-events">
+                    <ul id="EventList">
+                        <span id="eventListInnerText"></span>
+                    </ul>
+                </div>
+                <div class="create-event">
+                    <label>Event Title:</label> <br>
+                    <input type="text" id="create-event-title" value=""> <br>
+                    <label>Date:</label><br>
+                    <input type="date" id="create-event-date"> <br>
+                    <label>Time Start:</label><br>
+                    <input type="time" id="create-event-start"> <br>
+                    <label>Time End:</label><br>
+                    <input type="time" id="create-event-end"> <br>
+                    <label>Description:</label><br>
+                    <input type="text" id="create-event-description"><br>
+                    <button id="createEventBtn">Create</button>
+                </div>
             </div>
         </div>
 
@@ -137,7 +146,6 @@
                     <button id="editEventBtn">Edit</button>
                     <button id="deleteEventBtn">Delete</button>
                 </div>
-                
             </header>
             <div class="event-detail-display">
                 <p>Event Title: <span id ="eventDetailTitle"></span></p>
@@ -150,8 +158,8 @@
             <div class="event-detail-display-form">
                 <label>Event Title:</label> <br>
                 <input type="text" id="event-title" value=""> <br>
-                <label>Event ID:</label><br>
-                <input type="number" id="event-id" readonly><br>
+                <!-- <label>Event ID:</label><br> -->
+                <input type="number" id="event-id" hidden>
                 <label>Date:</label><br>
                 <input type="date" id="event-date"> <br>
                 <label>Time Start:</label><br>

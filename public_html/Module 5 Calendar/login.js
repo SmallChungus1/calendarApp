@@ -1,3 +1,14 @@
+// Global Variables
+
+const signup = document.getElementById("calSignUp");
+const signout = document.getElementById("calLogin");
+let display = 0;
+
+const logOutBtn = document.getElementById("logOutBtn");
+let isLogOut = true;
+
+// Event Listeners
+
 function loginUser(event){
     const userName = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -13,11 +24,15 @@ function loginUser(event){
     .then(loginData=> {
         if(loginData.success){
             alert(`Login Successful ${loginData.message}`);
-            document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
+            //document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
             document.getElementById("currUser").innerText=userName;
             loggedInStatus = true;
-            document.getElementById("calLogin").remove();
-            document.getElementById("calSignUp").remove();
+            isLogOut = false;
+            hideShow();
+            logOutBtn.style.display = "block";
+          //  toggleLogin();
+            // document.getElementById("calLogin").remove();
+            // document.getElementById("calSignUp").remove();
         }else{
             alert(`Login not successful ${loginData.message}`);
         }
@@ -26,6 +41,32 @@ function loginUser(event){
         )
     .catch(err => console.error(err));
 }
+
+function toggleLogin(){
+    if (!isLogOut) {
+        logOutBtn.style.display = "block";
+        // isLogOut = true;
+        console.log("Displaying logout button");
+    } else {
+        logOutBtn.style.display = "none";
+        // isLogOut = false;
+        console.log("Hidding logout button");
+    }
+}
+
+function hideShow() {
+    if (display == 1) {
+        signup.style.display = "block";
+        signout.style.display = "block";
+        display = 0;
+        console.log("display = 0");
+    } else {
+        signup.style.display = "none";
+        signout.style.display = "none";
+        display = 1;
+        console.log("display = 1");
+    }
+  }
 
 
 function signUpUser(event){
@@ -57,6 +98,25 @@ function signUpUser(event){
     .catch(err => console.error(err));
 }
 
+
+function hideshow(){
+
+    const div = document.getElementById("calSignUp");
+        const div2 = document.getElementById("calLogin");
+
+        let display = 0;
+        function hideShow() {
+            if (display == 1) {
+                div.style.display = "block";
+                div2.style.display = "block";
+                display = 0;
+            } else {
+                div.style.display = "none";
+                div2.style.display = "none";
+                display = 1;
+            }
+        }
+}
 document.getElementById("loginBtn").addEventListener("click", loginUser, false);
 
 document.getElementById("signUpBtn").addEventListener("click", signUpUser, false);
