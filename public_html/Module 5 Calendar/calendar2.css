@@ -1,5 +1,128 @@
 #calendarBody {
     padding: 1em;
-   
     display: table;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-scrolled {
+    background-color: #333; /* add the desired background color */
+}
+
+.logo {
+    float: left;
+    padding: 8px;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.logo a {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0px;
+    text-decoration: none;
+}
+
+nav ul {
+    float: right;
+}
+
+nav ul li {
+    display: inline-block;
+    float: left;
+}
+
+nav ul li:not(:first-child) {
+    margin-left: 48px;
+}
+
+nav ul li:last-child {
+    margin-right: 24px;
+}
+
+nav ul li a {
+    display: inline-block;
+    outline: none;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'Popins', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* or 'Open Sans', 'Montserrat', 'Lato', 'Nunito', 'Raleway', 'Source Sans Pro', 'Ubuntu', etc. */
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(68.4deg, rgb(248, 182, 204) 0.5%, rgb(192, 198, 230) 49%, rgb(225, 246, 240) 99.8%);
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.main-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.wrapper {
+    width: 450px;
+    background: rgb(250, 250, 250);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+
+.wrapper header{
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+}
+
+#accountLogin{
+    width: 900px;
+    background: rgb(250, 250, 250);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+
+.calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 60%;
+    text-align: center;
+}
+
+.calendar table td, th {
+    padding-bottom: 10px;
+}
+
+#test {
+    font-size: 16px;
+    font-weight: bold;
+    color: #c40a0a;
+    line-height: 1.5;
 }

@@ -202,3 +202,14 @@ function Month(c,b){this.year=c;
     this.getDateObject=function(a){return new Date(this.year,this.month,a)};
     this.getWeeks=function(){var a=this.getDateObject(1),b=this.nextMonth().getDateObject(0),c=[],a=new Week(a);
         for(c.push(a);!a.contains(b);)a=a.nextWeek(),c.push(a);return c}};
+
+// Navbar
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+        navbar.classList.add('navbar-scrolled');
+    } else {
+        navbar.classList.remove('navbar-scrolled');
+    }
+});
