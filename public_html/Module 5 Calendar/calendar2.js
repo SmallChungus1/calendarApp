@@ -6,6 +6,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("DOMContentLoaded", handleClick, false);
+document.addEventListener("addEventBtn", showEvent, false);
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
 
@@ -161,11 +162,14 @@ function handleClick(){
 				alert(`Data retrival successful`);
 				dataMsgArry = data.message;
 
-				// alert(dataMsgArry["eventDate"]);
+				alert(dataMsgArry["eventDate"]);
 				// const anEvent = document.createElement("li");
 				// title = document.createTextNode("Hello");
 				// anEvent.appendChild(title);
 				// document.getElementById("EventList").appendChild(anEvent);
+
+				// let liTag = "";
+				// liTag += `<li>${title}</li>`;
 				
 				document.getElementById("eventDate").innerText=dataMsgArry[0]["eventDate"];
 				for (let i = 0; i<dataMsgArry.length; i++){
@@ -200,6 +204,20 @@ function handleClick(){
 	}
 }
 
+function showEvent(){
+	var eventDetailDisplay = document.getElementById("eventDetailDisplay");
+	var display = 0;
+	function hideShow() {
+		if (display == 1) {
+			div.style.display = "block";
+			display = 0;
+		} else {
+			div.style.display = "none";
+			display = 1;
+		}
+	}
+}
+
 
 function cleardisplayEvents(){
 	document.getElementById("eventDetailTitle").innerText="";
@@ -224,24 +242,12 @@ function clearCal(){
 	for(let i = 0; i < 7; i++){
 		weekID = "w"+i
 		let dayOfWeek = document.getElementById(weekID);
-		//console.log(dayOfWeek);
 		let currDay = Array.from(dayOfWeek.getElementsByTagName("TD"));
 		currDay.forEach(aChild => {
 			aChild.remove();
 		})
-		// console.log(currDay);
-
-		
-		
 	}
 }
-
-
-// document.getElementById("test").addEventListener("click", function(){
-// 	alert("Clicked");
-// }, false);
-
-
 
 (function(){
     Date.prototype.deltaDays=function(c){

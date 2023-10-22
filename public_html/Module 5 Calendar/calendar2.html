@@ -28,23 +28,25 @@
         </nav>
     </div>
     <div class="wrapper" id="accountLogin">
-        <div id="heading">
-            <h2 id="welcomeMsg">Welcome Guest (You need to login. User: Bob Password: 123)</h2>
-        </div>
+        <div class="account-content">
+            <heading>
+                <h2 id="welcomeMsg">Welcome Guest (You need to login. User: Bob Password: 123)</h2>
+            </heading>
 
-        <div class="container" id ="calLogin">
-            <h3>Log In:</h3>
-            <input type="text" id="username" placeholder="Username" required/><br>
-            <input type="password" id="password" placeholder="Password" required/>
-            <button id="loginBtn">Log In</button>
-        </div>
+            <div class="container" id ="calLogin">
+                <h3>Log In:</h3>
+                <input type="text" id="username" placeholder="Username" required/><br>
+                <input type="password" id="password" placeholder="Password" required/>
+                <button id="loginBtn">Log In</button>
+            </div>
 
-        <div class="container" id ="calSignUp">
-            <h3>Sign Up:</h3>
-            <input type="text" id="usernameReg" placeholder="Username" required/><br>
-            <input type="password" id="passwordReg" placeholder="Password" required/><br>
-            <input type="password" id="passwordConfirm" placeholder="Confirm Password"required />
-            <button id="signUpBtn">SignUp</button>
+            <div class="container" id ="calSignUp">
+                <h3>Sign Up:</h3>
+                <input type="text" id="usernameReg" placeholder="Username" required/><br>
+                <input type="password" id="passwordReg" placeholder="Password" required/><br>
+                <input type="password" id="passwordConfirm" placeholder="Confirm Password"required />
+                <button id="signUpBtn">SignUp</button>
+            </div>
         </div>
     </div>
 
@@ -87,9 +89,7 @@
             <div class="calendar">
                 <table id = "calTable">
                     <tr>
-                    <!-- <th id ="weeks"> Weeks: 
                     
-                    </th> -->
                     <th id="0"><strong>Sun</strong></th>
                     <th id="1"><strong>Mon</strong></th>
                     <th id="2"><strong>Tue</strong></th>
@@ -113,24 +113,36 @@
         <br>
 
         <div class="wrapper" id="EventDisplay">
-            <P>Events List View for user: <b id="currUser"></b></P>
-            <p>Date: <b id ="eventDate"></b></p>
-            <!-- <p>Month: <b id ="calMonth"></b></p>
-            <p>Year: <b id ="calYear"></b></p> -->
-            <ul id="EventList">List of Events: <span id="eventListInnerText"></span></ul>
-
-
-
+            <header>
+                <h2><span id="calMonth"></span>  <span id="calYear"></span>Events</h2>
+                <button id="addEventBtn">Add Event</button>
+            </header>
+            <div class="event-display">
+                <P>Events List View for user: <b id="currUser"></b></P>
+                <p>Date: <b id ="eventDate"></b></p>
+                <p>Month: <b id ="calMonth"></b></p>
+                <p>Year: <b id ="calYear"></b></p>
+                <ul id="EventList">List of Events: <span id="eventListInnerText"></span></ul>
+            </div>
         </div>
 
-
         <div class="wrapper" id="eventDetailDisplay">
-            <P><b>View Selected Event in Detail</b></P>
-            <P>Event Title: <span id="eventDetailTitle"></span></P>
-            <p>Date: <span id ="eventDetailDate"></span></p>
-            <P>Time start: <span id ="eventDetailTS"></span></P>
-            <P>Time end: <span id ="eventDetailTE"></span></P>
-            <P>Descriptiopn <span id ="eventDetailDesc"></span></P>
+            <header>
+                <h2>Event Details</h2>
+                <div class="event-buttons"> 
+                    <button id="editEventBtn">Edit</button>
+                    <button id="deleteEventBtn">Delete</button>
+                </div>
+                
+            </header>
+            <div class="event-detail-display">
+                <p>Event ID: <span id="eventDetailID"></span></p>
+                <p>Event Title: <span id="eventDetailTitle"></span></p>
+                <p>Date: <span id ="eventDetailDate"></span></p>
+                <p>Time start: <span id ="eventDetailTS"></span></p>
+                <p>Time end: <span id ="eventDetailTE"></span></p>
+                <p>Description <span id ="eventDetailDesc"></span></p>
+            </div>
 
         </div>
     </div>
