@@ -13,7 +13,7 @@ $json_obj = json_decode($json_str, true);
 $date = $json_obj['date'];
 
 
-if(!$_SESSION["LoggedIn"]){
+if(!isset($_SESSION["LoggedIn"])){
     echo json_encode(array(
         "success" => false,
         "message" => "Not Logged In, Log In To View events"
@@ -24,14 +24,12 @@ if(!$_SESSION["LoggedIn"]){
 }
 
 
-$stmt = $mysqli->prepare("select title, eventDate, timeStart, timeEnd, description, owner from events where eventDate='$date'");
+$stmt = $mysqli->prepare("select title, eventDate, timeStart, timeEnd, description, owner from events where eventDate='$date' and owner = '$userName'");
 if(!$stmt){
     
-
-
     echo json_encode(array(
         "success" => false,
-        "message" => "Query Prep Failed"
+        "message" => "Query Prep Failed".$userName
     ));
 	exit;
 }else{
@@ -43,9 +41,15 @@ if(!$stmt){
 
 $stmt->execute();
 $result = $stmt->get_result();
-$row = $result->fetch_assoc();
+$responseData = array();
 
-if(!$row){
+//need to check for xss attack
+while($row = $result->fetch_assoc()){
+    
+    array_push($responseData, $row);
+}
+
+if(!$responseData){
     echo json_encode(array(
         "success" => false,
         "message" => "Event not found" 
@@ -53,7 +57,7 @@ if(!$row){
 }else{
     echo json_encode(array(
         "success" => true,
-        "message" => "Events Found" 
+        "message" => $responseData
     ));
 
 }

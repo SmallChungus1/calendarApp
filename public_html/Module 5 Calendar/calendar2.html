@@ -126,19 +126,29 @@
         <br>
 
         <div class="wrapper" id="EventDisplay">
-            <P><b>Event View for user:</b></P>
-            <P><b id="currUser"></b></P>
-            <p>Day: <b id ="calDay"></b></p>
+            <P>Events List View for user: <b id="currUser"></b></P>
+            <p>Date: <b id ="eventDate"></b></p>
             <!-- <p>Month: <b id ="calMonth"></b></p>
             <p>Year: <b id ="calYear"></b></p> -->
-            <ul id="EventList">List of Events: </ul>
+            <ul id="EventList">List of Events: <span id="eventListInnerText"></span></ul>
 
 
 
         </div>
+
+
+        <div class="wrapper" id="eventDetailDisplay">
+            <P><b>View Selected Event in Detail</b></P>
+            <P>Event Title: <span id="eventDetailTitle"></span></P>
+            <p>Date: <span id ="eventDetailDate"></span></p>
+            <P>Time start: <span id ="eventDetailTS"></span></P>
+            <P>Time end: <span id ="eventDetailTE"></span></P>
+            <P>Descriptiopn <span id ="eventDetailDesc"></span></P>
+
+        </div>
     </div>
 
-    <p id="test">testing</p>
+    <!-- <p id="test">testing</p> -->
 </body>
 
 

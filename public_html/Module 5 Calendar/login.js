@@ -1,4 +1,3 @@
-
 function loginUser(event){
     const userName = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -13,7 +12,7 @@ function loginUser(event){
     // .then(loginData=> alert(loginData.success ? "Login Successful" : `Login not successful ${loginData.message}`))
     .then(loginData=> {
         if(loginData.success){
-            alert("Login Successful");
+            alert(`Login Successful ${loginData.message}`);
             document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
             document.getElementById("currUser").innerText=userName;
             document.getElementById("calLogin").remove();

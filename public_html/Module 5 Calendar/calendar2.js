@@ -112,9 +112,9 @@ function handleClick(){
 			//console.log(currDay[i])
 			currDay[k].addEventListener("click",function(){
 				//alert(currDay[k].innerText);
-				document.getElementById("calDay").innerText = currDay[k].innerText;
-				document.getElementById("calMonth").innerText = months[currentMonth.month];
-				document.getElementById("calYear").innerText = currentMonth.year;
+				// document.getElementById("calDay").innerText = currDay[k].innerText;
+				// document.getElementById("calMonth").innerText = months[currentMonth.month];
+				// document.getElementById("calYear").innerText = currentMonth.year;
 				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 				getEvents();
 				console.log(fullDate);
@@ -124,6 +124,7 @@ function handleClick(){
 
 
 	function getEvents(){
+		clearEventList();
 		const currDate = fullDate;
 		//const userName = document.getElementById("currUser");
 		const data = {'date': currDate};
@@ -135,15 +136,37 @@ function handleClick(){
 		.then(response=>response.json())
 		.then(data=> {
 			if(data.success){
-				alert("Data Retrival Successful");
-
+				alert(`Data retrival successful`);
+				dataMsgArry = data.message;
+				// alert(dataMsgArry["eventDate"]);
 				// const anEvent = document.createElement("li");
 				// title = document.createTextNode("Hello");
 				// anEvent.appendChild(title);
 				// document.getElementById("EventList").appendChild(anEvent);
+				document.getElementById("eventDate").innerText=dataMsgArry[0]["eventDate"];
+				for (let i = 0; i<dataMsgArry.length; i++){
+					const singleEvent = dataMsgArry[i];
+					const anEvent = document.createElement("li");
+					eventTitle = document.createTextNode(singleEvent["title"]);
+					
+					anEvent.appendChild(eventTitle);
+					anEvent.addEventListener("click", () => {
+						cleardisplayEvents();
+						document.getElementById("eventDetailTitle").innerText=singleEvent["title"];
+						document.getElementById("eventDetailDate").innerText=singleEvent["eventDate"];
+						document.getElementById("eventDetailTS").innerText=singleEvent["timeStart"];
+						document.getElementById("eventDetailTE").innerText=singleEvent["timeEnd"];
+						document.getElementById("eventDetailDesc").innerText=singleEvent["description"];
+					}, false)
+					document.getElementById("EventList").appendChild(anEvent);
+				}
+				
+
 				
 			}else{
 				alert(`Data Retrival not successful ${data.message}`);
+				document.getElementById("eventDate").innerText=fullDate;
+				document.getElementById("eventListInnerText").innerText="No Events Yet";
 			}
 		}  
 			)
@@ -151,6 +174,26 @@ function handleClick(){
 
 
 	}
+}
+
+
+function cleardisplayEvents(){
+	document.getElementById("eventDetailTitle").innerText="";
+	document.getElementById("eventDetailDate").innerText="";
+	document.getElementById("eventDetailTS").innerText="";
+	document.getElementById("eventDetailTE").innerText="";
+	document.getElementById("eventDetailDesc").innerText="";
+}
+
+function clearEventList(){
+
+	const eventList = document.getElementById("EventList");
+	document.getElementById("eventListInnerText").innerText="";
+	let currEvent = Array.from(eventList.getElementsByTagName("LI"));
+	currEvent.forEach(aChild => {
+		aChild.remove();
+	})
+
 }
 
 function clearCal(){
@@ -163,10 +206,7 @@ function clearCal(){
 			aChild.remove();
 		})
 		// console.log(currDay);
-		// for(let k =0; k < currDay.length; k++){
-			
-		// 	currDay[k].remove();
-		// }
+
 		
 		
 	}
