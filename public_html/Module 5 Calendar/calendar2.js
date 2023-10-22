@@ -1,11 +1,16 @@
 
 let currentMonth = new Month(2023, 9); // October 2023
 const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November","December"];
+let loggedInStatus = false;
 
 // Change the month when the "next" button is pressed
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
-document.addEventListener("DOMContentLoaded", handleClick, false);
+if(loggedInStatus){
+	console.log(loggedInStatus);
+	document.addEventListener("DOMContentLoaded", handleClick, false);
+}
+
 document.addEventListener("addEventBtn", showEvent, false);
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
