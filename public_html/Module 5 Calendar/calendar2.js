@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("addEventBtn", showEvent, false);
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
+document.getElementById("random").addEventListener("click",()=>{
+	console.log(document.getElementById("dateInput").value);
+	console.log(document.getElementById("timeInput").value);
+}, false)
+
 
 //for use later: show/hide login/signups
 
