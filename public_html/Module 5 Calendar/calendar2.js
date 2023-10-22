@@ -6,19 +6,9 @@ let loggedInStatus = false;
 // Change the month when the "next" button is pressed
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
-// if(loggedInStatus){
-	console.log(loggedInStatus);
-	document.addEventListener("DOMContentLoaded", handleClick, false);
-// }
-
-document.addEventListener("addEventBtn", showEvent, false);
+document.addEventListener("DOMContentLoaded", handleClick, false);
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
-document.getElementById("random").addEventListener("click",()=>{
-	console.log(document.getElementById("dateInput").value);
-	console.log(document.getElementById("timeInput").value);
-}, false)
-
 
 //for use later: show/hide login/signups
 
@@ -173,13 +163,6 @@ function handleClick(){
 				dataMsgArry = data.message;
 
 				alert(dataMsgArry["eventDate"]);
-				// const anEvent = document.createElement("li");
-				// title = document.createTextNode("Hello");
-				// anEvent.appendChild(title);
-				// document.getElementById("EventList").appendChild(anEvent);
-
-				// let liTag = "";
-				// liTag += `<li>${title}</li>`;
 				
 				document.getElementById("eventDate").innerText=dataMsgArry[0]["eventDate"];
 				for (let i = 0; i<dataMsgArry.length; i++){
@@ -190,12 +173,18 @@ function handleClick(){
 					anEvent.appendChild(eventTitle);
 					anEvent.addEventListener("click", () => {
 						cleardisplayEvents();
-						document.getElementById("eventDetailTitle").innerText=singleEvent["title"];
-						document.getElementById("eventDetailID").innerText=singleEvent["eventID"];
-						document.getElementById("eventDetailDate").innerText=singleEvent["eventDate"];
-						document.getElementById("eventDetailTS").innerText=singleEvent["timeStart"];
-						document.getElementById("eventDetailTE").innerText=singleEvent["timeEnd"];
-						document.getElementById("eventDetailDesc").innerText=singleEvent["description"];
+						document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
+						document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
+						document.getElementById("eventDetailTS").innerText = singleEvent["timeStart"];
+						document.getElementById("eventDetailTE").innerText = singleEvent["timeEnd"];
+						document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
+
+						document.getElementById("event-title").value = singleEvent["title"];
+						document.getElementById("event-id").value = singleEvent["id"];
+						document.getElementById("event-date").value = singleEvent["eventDate"];
+						document.getElementById("event-start").value = singleEvent["timeStart"];
+						document.getElementById("event-end").value = singleEvent["timeEnd"];
+						document.getElementById("event-description").value = singleEvent["description"];
 					}, false)
 					document.getElementById("EventList").appendChild(anEvent);
 				}

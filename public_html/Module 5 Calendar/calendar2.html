@@ -140,12 +140,26 @@
                 
             </header>
             <div class="event-detail-display">
+                <p>Event Title: <span id ="eventDetailTitle"></span></p>
                 <p>Event ID: <span id="eventDetailID"></span></p>
-                
                 <p>Date: <span id ="eventDetailDate"></span></p>
                 <p>Time start: <span id ="eventDetailTS"></span></p>
                 <p>Time end: <span id ="eventDetailTE"></span></p>
                 <p>Description <span id ="eventDetailDesc"></span></p>
+            </div>
+            <div class="event-detail-display-form">
+                <label>Event Title:</label>
+                <input type="text" id="event-title" value=""> <br>
+                <label>Event ID:</label>
+                <input type="number" id="event-id" readonly><br>
+                <label>Date:</label>
+                <input type="date" id="event-date"> <br>
+                <label>Time Start:</label>
+                <input type="time" id="event-start"> <br>
+                <label>Time End:</label>
+                <input type="time" id="event-end"> <br>
+                <label>Description:</label> <br>
+                <input type="text" id="event-description"><br>
             </div>
 
         </div>
