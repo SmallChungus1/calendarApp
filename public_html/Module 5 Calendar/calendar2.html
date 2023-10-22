@@ -114,21 +114,22 @@
 
         <div class="wrapper" id="EventDisplay">
             <header>
-                <h2><span id="calMonth"></span>  <span id="calYear"></span>Events</h2>
+                <h2><b id ="eventDate"></b></h2>
                 <button id="addEventBtn">Add Event</button>
             </header>
             <div class="event-display">
+                
                 <P>Events List View for user: <b id="currUser"></b></P>
-                <p>Date: <b id ="eventDate"></b></p>
-                <p>Month: <b id ="calMonth"></b></p>
-                <p>Year: <b id ="calYear"></b></p>
+                
+                <!-- <p>Month: <b id ="calMonth"></b></p>
+                <p>Year: <b id ="calYear"></b></p> -->
                 <ul id="EventList">List of Events: <span id="eventListInnerText"></span></ul>
             </div>
         </div>
 
         <div class="wrapper" id="eventDetailDisplay">
             <header>
-                <h2>Event Details</h2>
+                <h2><span id="eventDetailTitle"></span></h2>
                 <div class="event-buttons"> 
                     <button id="editEventBtn">Edit</button>
                     <button id="deleteEventBtn">Delete</button>
@@ -137,7 +138,7 @@
             </header>
             <div class="event-detail-display">
                 <p>Event ID: <span id="eventDetailID"></span></p>
-                <p>Event Title: <span id="eventDetailTitle"></span></p>
+                
                 <p>Date: <span id ="eventDetailDate"></span></p>
                 <p>Time start: <span id ="eventDetailTS"></span></p>
                 <p>Time end: <span id ="eventDetailTE"></span></p>

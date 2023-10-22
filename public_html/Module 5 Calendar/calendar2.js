@@ -6,10 +6,10 @@ let loggedInStatus = false;
 // Change the month when the "next" button is pressed
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
-if(loggedInStatus){
+// if(loggedInStatus){
 	console.log(loggedInStatus);
 	document.addEventListener("DOMContentLoaded", handleClick, false);
-}
+// }
 
 document.addEventListener("addEventBtn", showEvent, false);
 document.getElementById("calYear").innerText = currentMonth.year;
@@ -186,6 +186,7 @@ function handleClick(){
 					anEvent.addEventListener("click", () => {
 						cleardisplayEvents();
 						document.getElementById("eventDetailTitle").innerText=singleEvent["title"];
+						document.getElementById("eventDetailID").innerText=singleEvent["eventID"];
 						document.getElementById("eventDetailDate").innerText=singleEvent["eventDate"];
 						document.getElementById("eventDetailTS").innerText=singleEvent["timeStart"];
 						document.getElementById("eventDetailTE").innerText=singleEvent["timeEnd"];

@@ -21,6 +21,7 @@ if ($passedInUser !== $_SESSION['currUser']){
 }
 unset($_SESSION['currUser']);
 unset($_SESSION['LoggedIn']);
+unset($_SESSION['token']);
 if(session_destroy()){
     echo json_encode(array(
         "success" => true,
