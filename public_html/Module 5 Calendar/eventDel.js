@@ -19,6 +19,7 @@ eventDelBtn.addEventListener("click",()=>{
     .then(response =>response.json())
     .then(data=>{
         alert(data.message);
+        cleardisplayEvents();
        
     })
     .catch(err => console.error(err));

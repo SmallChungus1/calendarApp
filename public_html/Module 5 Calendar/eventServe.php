@@ -24,7 +24,7 @@ if(!isset($_SESSION["LoggedIn"])){
 }
 
 
-$stmt = $mysqli->prepare("select title, eventDate, timeStart, timeEnd, eventID, description, owner from events where eventDate='$date' and owner = '$userName'");
+$stmt = $mysqli->prepare("select * from events where eventDate='$date' and owner = '$userName' or sharedWith = '$userName'");
 if(!$stmt){
     
     echo json_encode(array(

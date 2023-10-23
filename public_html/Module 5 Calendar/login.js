@@ -35,6 +35,7 @@ function loginUser(event){
             document.getElementById("eventCreateToken").value=loginData.message[1]; //the generated token
             document.getElementById("eventEditToken").value=loginData.message[1];
             logOutBtn.style.display = "block";
+            addEventBtn.disabled = false;
           //  toggleLogin();
             // document.getElementById("calLogin").remove();
             // document.getElementById("calSignUp").remove();
@@ -45,18 +46,6 @@ function loginUser(event){
     }  
         )
     .catch(err => console.error(err));
-}
-
-function toggleLogin(){
-    if (!isLogOut) {
-        logOutBtn.style.display = "block";
-        addEventBtn.disabled = true;
-        console.log("Displaying logout button");
-    } else {
-        logOutBtn.style.display = "none";
-        addEventBtn.disabled = false;
-        console.log("Hidding logout button");
-    }
 }
 
 function hideShow() {

@@ -137,6 +137,11 @@
                         <span id="calListInnerText"></span>
                     </ul>
                 </div>
+                <div class="create-calendar">
+                    <label>Calendar Name:</label> <br>
+                    <input type="text" id="create-calendar-name"> <br>
+                    <button id="createCalendarBtn">Create</button>
+                </div>
             </div>
         </div>
         <br>
@@ -144,7 +149,7 @@
         <div class="wrapper" id="EventDisplay">
             <header>
                 <h2>Events on <b id ="eventDate"></b></h2>
-                <button id="addEventBtn">Add Event</button> // this button should only appear if a user is logged in
+                <button id="addEventBtn" disabled>Add Event</button>
             </header>
             <div class="event-display">
                 <div class="list-events">
@@ -163,6 +168,8 @@
                     <input type="time" id="create-event-end"> <br>
                     <label>Description:</label><br>
                     <input type="text" id="create-event-description"><br>
+                    <label>Shared:</label><br>
+                    <input type="text" id="create-share-event"><br>
                     <input type="hidden" name="token" id="eventCreateToken" value="" />
                     <button id="createEventBtn">Create</button>
                 </div>
@@ -178,17 +185,16 @@
                 </div>
             </header>
             <div class="event-detail-display">
-                <!-- <p>Event Title: <span id ="eventDetailTitle"></span></p> -->
                 <p>Event ID: <span id="eventDetailID"></span></p>
                 <p>Date: <span id ="eventDetailDate"></span></p>
                 <p>Time start: <span id ="eventDetailTS"></span></p>
                 <p>Time end: <span id ="eventDetailTE"></span></p>
                 <p>Description <span id ="eventDetailDesc"></span></p>
+                <p>Shared With: <span id ="eventSharedWith"></span></p>
             </div>
             <div class="event-detail-display-form">
                 <label>Event Title:</label> <br>
                 <input type="text" id="event-title" value=""> <br>
-                <!-- <label>Event ID:</label><br> -->
                 <input type="number" id="event-id" hidden>
                 <label>Date:</label><br>
                 <input type="date" id="event-date"> <br>
@@ -198,6 +204,8 @@
                 <input type="time" id="event-end"> <br>
                 <label>Description:</label><br>
                 <input type="text" id="event-description"><br>
+                <label>Shared With:</label><br>
+                <input type="text" id="event-share"><br>
                 <input type="hidden" name="token" id="eventEditToken" value="" />
                 <button id="updateBtn">Update</button>
             </div>

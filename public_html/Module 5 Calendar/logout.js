@@ -26,6 +26,7 @@ logOutBtn.addEventListener("click", ()=>{
 
             loggedInStatus = false;
             logOutBtn.style.display = "none";
+            addEventBtn.disabled = true;
           //  toggleLogin();
         }else{
             alert(`Log out not successful ${data.message}`);
@@ -52,13 +53,14 @@ function hideShow() {
 
 function toggleLogin(){
   if (isLogOut) {
+    // if the user is logged out, display the login button and disable the add event button
       logOutBtn.style.display = "block";
-      addEventBtn.disabled = false;
+      addEventBtn.disabled = true;
       isLogOut = true;
       console.log("Displaying logout button");
   } else {
       logOutBtn.style.display = "none";
-      addEventBtn.disabled = true;
+      addEventBtn.disabled = false;
       isLogOut = false;
       console.log("Hidding logout button");
   }

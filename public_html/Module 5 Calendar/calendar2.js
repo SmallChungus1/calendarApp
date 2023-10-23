@@ -3,6 +3,7 @@ let currentMonth = new Month(2023, 9); // October 2023
 const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November","December"];
 let loggedInStatus = false;
 
+
 // Change the month when the "next" button is pressed
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
@@ -15,32 +16,12 @@ createEventBtn = document.getElementById("addEventBtn");
 createEventBtn.addEventListener("click", showCreate, false);
 
 delateEventBtn = document.getElementById("deleteEventBtn");
-delateEventBtn.addEventListener("click", deleteEvent, false);
+
+createCalendarBtn = document.getElementById("createCalendarBtn");
+createCalendarBtn.addEventListener("click", showCreateCalendar, false);
 
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
-
-//for use later: show/hide login/signups
-
-// let regStatus = true;
-
-// document.getElementById("loginTextCue").addEventListener("click", ()=>{
-// 	if (regStatus){
-// 		regStatus = false;
-// 	}else{
-// 		regStatus = true;
-// 	}
-	
-// }, false);
-
-
-// 	if(regStatus){
-// 		document.getElementById("calSignUp").style.display='none';
-		
-// 	}else if (!regStatus){
-		
-// 		document.getElementById("calLogin").style.display='none';
-// 	}
 
 document.getElementById("nextMonth").addEventListener("click", function(event){
 	currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
@@ -188,6 +169,7 @@ function handleClick(){
 						document.getElementById("eventDetailTE").innerText = singleEvent["timeEnd"];
 						document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
 						document.getElementById("eventDetailID").innerText = singleEvent["eventID"];
+						document.getElementById("eventSharedWith").innerText = singleEvent["sharedWith"];
 
 						document.getElementById("event-title").value = singleEvent["title"];
 						document.getElementById("event-id").value = singleEvent["eventID"];
@@ -195,6 +177,7 @@ function handleClick(){
 						document.getElementById("event-start").value = singleEvent["timeStart"];
 						document.getElementById("event-end").value = singleEvent["timeEnd"];
 						document.getElementById("event-description").value = singleEvent["description"];
+						document.getElementById("event-share").value = singleEvent["sharedWith"];
 					}, false)
 					document.getElementById("EventList").appendChild(anEvent);
 				}
@@ -212,6 +195,24 @@ function handleClick(){
 
 
 	}
+}
+
+function cleardisplayEvents(){
+	document.getElementById("eventDetailTitle").innerText="";
+	document.getElementById("eventDetailDate").innerText="";
+	document.getElementById("eventDetailTS").innerText="";
+	document.getElementById("eventDetailTE").innerText="";
+	document.getElementById("eventDetailDesc").innerText="";
+	document.getElementById("eventSharedWith").innerText = "";
+
+
+	document.getElementById("event-title").value = "";
+	document.getElementById("event-id").value = "";
+	document.getElementById("event-date").value = "";
+	document.getElementById("event-start").value = "";
+	document.getElementById("event-end").value = "";
+	document.getElementById("event-description").value = "";
+	document.getElementById("event-share").value = "";
 }
 
 function showEdit() {
@@ -243,26 +244,17 @@ function showCreate() {
 	}
 }
 
-
-
-function deleteEvent(){
-	// THIS SHOULD DELETE THE EVENT FROM THE DATABASE
-}
-
-
-function cleardisplayEvents(){
-	document.getElementById("eventDetailTitle").innerText="";
-	document.getElementById("eventDetailDate").innerText="";
-	document.getElementById("eventDetailTS").innerText="";
-	document.getElementById("eventDetailTE").innerText="";
-	document.getElementById("eventDetailDesc").innerText="";
-
-	document.getElementById("event-title").value = "";
-	document.getElementById("event-id").value = "";
-	document.getElementById("event-date").value = "";
-	document.getElementById("event-start").value = "";
-	document.getElementById("event-end").value = "";
-	document.getElementById("event-description").value = "";
+function showCreateCalendar(){
+	const listEvents = document.getElementsByClassName("list-events")[0];
+	const createEvent = document.getElementsByClassName("create-event")[0];
+	
+	if (listEvents.style.display === "none") {
+		listEvents.style.display = "block";
+		createEvent.style.display = "none";
+	} else {
+		listEvents.style.display = "none";
+		createEvent.style.display = "block";
+	}
 }
 
 function clearEventList(){
