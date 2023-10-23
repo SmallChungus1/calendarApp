@@ -9,6 +9,7 @@
     <script src="login.js" defer></script>
     <script src="logout.js" defer></script>
     <script src="addEvent.js" defer></script>
+    <script src="editEvent.js" defer></script>
 
 </head>
 <body>
@@ -150,7 +151,7 @@
                 </div>
             </header>
             <div class="event-detail-display">
-                <p>Event Title: <span id ="eventDetailTitle"></span></p>
+                <!-- <p>Event Title: <span id ="eventDetailTitle"></span></p> -->
                 <p>Event ID: <span id="eventDetailID"></span></p>
                 <p>Date: <span id ="eventDetailDate"></span></p>
                 <p>Time start: <span id ="eventDetailTS"></span></p>
@@ -170,6 +171,7 @@
                 <input type="time" id="event-end"> <br>
                 <label>Description:</label><br>
                 <input type="text" id="event-description"><br>
+                <input type="hidden" name="token" id="eventEditToken" value="" />
                 <button id="updateBtn">Update</button>
             </div>
 

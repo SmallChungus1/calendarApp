@@ -20,7 +20,7 @@ const eventCreateToken = document.getElementById("eventCreateToken").value;
     // console.log("eventTitle: ", eventTitle);
     // console.log("date: ", eventDate);
     // console.log("clicked!");
-    console.log("event token: ", eventCreateToken);
+   // console.log("event token: ", eventCreateToken);
     const data = {"eventTitle": eventTitle, "eventDate":eventDate,"eventTS":eventTS,"eventTE":eventTE,"eventDesc":eventDesc, "username":username, "eventToken":eventCreateToken};
     fetch("addEvent.php", {
         method: 'POST',

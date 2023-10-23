@@ -30,6 +30,7 @@ function loginUser(event){
             isLogOut = false;
             hideShow();
             document.getElementById("eventCreateToken").value=loginData.message[1]; //the generated token
+            document.getElementById("eventEditToken").value=loginData.message[1];
             logOutBtn.style.display = "block";
           //  toggleLogin();
             // document.getElementById("calLogin").remove();

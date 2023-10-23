@@ -187,9 +187,10 @@ function handleClick(){
 						document.getElementById("eventDetailTS").innerText = singleEvent["timeStart"];
 						document.getElementById("eventDetailTE").innerText = singleEvent["timeEnd"];
 						document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
+						document.getElementById("eventDetailID").innerText = singleEvent["eventID"];
 
 						document.getElementById("event-title").value = singleEvent["title"];
-						document.getElementById("event-id").value = singleEvent["id"];
+						document.getElementById("event-id").value = singleEvent["eventID"];
 						document.getElementById("event-date").value = singleEvent["eventDate"];
 						document.getElementById("event-start").value = singleEvent["timeStart"];
 						document.getElementById("event-end").value = singleEvent["timeEnd"];
