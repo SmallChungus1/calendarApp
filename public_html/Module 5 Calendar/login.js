@@ -23,12 +23,13 @@ function loginUser(event){
     // .then(loginData=> alert(loginData.success ? "Login Successful" : `Login not successful ${loginData.message}`))
     .then(loginData=> {
         if(loginData.success){
-            alert(`Login Successful ${loginData.message}`);
+            alert(`Login Successful, ${loginData.message[0]}!`);
             //document.getElementById("welcomeMsg").innerText="Welcome, "+userName;
             document.getElementById("currUser").innerText=userName;
             loggedInStatus = true;
             isLogOut = false;
             hideShow();
+            document.getElementById("eventCreateToken").value=loginData.message[1]; //the generated token
             logOutBtn.style.display = "block";
           //  toggleLogin();
             // document.getElementById("calLogin").remove();

@@ -46,10 +46,12 @@ if(!$row){
         $_SESSION["currUser"] = $username;
         $_SESSION["LoggedIn"] = true;
         $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(32)); //uses rando_int to generate a token for CSRF Token auth
-        
+        $dataReturn = array();
+        array_push($dataReturn, $_SESSION["currUser"]);
+        array_push($dataReturn, $_SESSION["token"]);
         echo json_encode(array(
             "success" => true,
-            "message" => "For user: ". $username
+            "message" => $dataReturn
         ));
         exit;
     }else{

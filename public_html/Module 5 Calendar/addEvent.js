@@ -15,11 +15,13 @@ const eventTS = document.getElementById("create-event-start").value;
 const eventTE = document.getElementById("create-event-end").value;
 const eventDesc = document.getElementById("create-event-description").value;
 const username = document.getElementById("currUser").innerText;
-    console.log("username: ", username);
-    console.log("eventTitle: ", eventTitle);
-    console.log("date: ", eventDate);
-    console.log("clicked!");
-    const data = {"eventTitle": eventTitle, "eventDate":eventDate,"eventTS":eventTS,"eventTE":eventTE,"eventDesc":eventDesc, "username":username };
+const eventCreateToken = document.getElementById("eventCreateToken").value;
+    // console.log("username: ", username);
+    // console.log("eventTitle: ", eventTitle);
+    // console.log("date: ", eventDate);
+    // console.log("clicked!");
+    console.log("event token: ", eventCreateToken);
+    const data = {"eventTitle": eventTitle, "eventDate":eventDate,"eventTS":eventTS,"eventTE":eventTE,"eventDesc":eventDesc, "username":username, "eventToken":eventCreateToken};
     fetch("addEvent.php", {
         method: 'POST',
         body: JSON.stringify(data),

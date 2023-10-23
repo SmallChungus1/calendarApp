@@ -17,9 +17,18 @@ $eventDate = htmlentities($json_obj['eventDate']);
 $eventTS = htmlentities($json_obj['eventTS']);
 $eventTE = htmlentities($json_obj['eventTE']);
 $eventDesc = htmlentities($json_obj['eventDesc']);
+$csrfToken = htmlentities($json_obj['eventToken']);
 $eventID = null; // will use autoincrement
 $sharedWith = null; //not using
 
+
+if ($csrfToken !== $_SESSION["token"]){
+    echo json_encode(array(
+        "success" => false,
+        "message" => "Error: Did not pass CSRF Security Check"
+    ));
+    exit;
+}
 if($username !== $_SESSION["currUser"]){
     echo json_encode(array(
         "success" => false,
