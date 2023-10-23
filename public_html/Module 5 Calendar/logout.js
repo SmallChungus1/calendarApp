@@ -18,6 +18,7 @@ logOutBtn.addEventListener("click", ()=>{
             cleardisplayEvents();
             updateCalendar();
             clearEventList();
+            
             hideShow();
             
             document.getElementById("currUser").innerText="";

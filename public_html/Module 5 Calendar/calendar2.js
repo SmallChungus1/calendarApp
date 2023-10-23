@@ -6,7 +6,7 @@ let loggedInStatus = false;
 // Change the month when the "next" button is pressed
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
-document.addEventListener("DOMContentLoaded", handleClick, false);
+//document.addEventListener("DOMContentLoaded", handleClick, false);
 
 editEventBtn = document.getElementById("editEventBtn");
 editEventBtn.addEventListener("click", showEdit, false);

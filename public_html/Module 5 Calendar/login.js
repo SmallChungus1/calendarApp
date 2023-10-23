@@ -29,6 +29,7 @@ function loginUser(event){
             loggedInStatus = true;
             isLogOut = false;
             hideShow();
+            handleClick();
             document.getElementById("eventCreateToken").value=loginData.message[1]; //the generated token
             document.getElementById("eventEditToken").value=loginData.message[1];
             logOutBtn.style.display = "block";

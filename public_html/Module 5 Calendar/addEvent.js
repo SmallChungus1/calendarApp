@@ -31,6 +31,7 @@ const eventCreateToken = document.getElementById("eventCreateToken").value;
     .then(data=>{
         if(data.success){
             alert(data.message);
+            handleClick(); //! check if this is really necessary to use to add color after adding event
         }else{
             alert(data.message);
         }
