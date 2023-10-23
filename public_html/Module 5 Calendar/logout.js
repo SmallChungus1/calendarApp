@@ -53,10 +53,12 @@ function hideShow() {
 function toggleLogin(){
   if (isLogOut) {
       logOutBtn.style.display = "block";
+      addEventBtn.disabled = false;
       isLogOut = true;
       console.log("Displaying logout button");
   } else {
       logOutBtn.style.display = "none";
+      addEventBtn.disabled = true;
       isLogOut = false;
       console.log("Hidding logout button");
   }

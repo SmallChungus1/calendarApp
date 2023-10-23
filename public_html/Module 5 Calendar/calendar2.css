@@ -101,6 +101,10 @@ body {
     justify-content: space-between;
 }
 
+.wrapper #calendars{
+    width: 500px;
+}
+
 .event-display {
     padding: 0px 30px 10px;
 }
@@ -112,6 +116,12 @@ body {
 .event-detail-display-form {
     padding: 0px 30px 10px;
     display: none;
+}
+
+.list-events {
+    padding: 0px 30px 10px;
+    overflow-y: scroll;
+    max-height: 200px;
 }
 
 #accountLogin{
@@ -157,6 +167,21 @@ body {
 .activeEventDates{
     background-color: blanchedalmond;
     color: aqua;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    gap: 10px; /* add the desired spacing between items */
+}
+
+.calendars-list {
+    justify-content: center;
+    align-items: left;
+    overflow-y: auto;
+    max-height: 200px; /* set the maximum height of the list */
 }
 
 /* Login */

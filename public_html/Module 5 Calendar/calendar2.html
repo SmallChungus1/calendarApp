@@ -76,40 +76,67 @@
     </script>
          -->
     <div class="main-section">
-        <div class="wrapper" id="calendarBody">
-            <header>
-                <p class="current-month-year"> <span id="calMonth"></span>  <span id="calYear"></span></p>
-                <div class="icons_month"> 
-                    <button id ="prevMonth">&lt;</button>
-                    <button id ="today">Today</button>
-                    <button id ="nextMonth">&gt;</button>
+        <div class="flex-container">
+            <div class="wrapper" id="calendarBody">
+                <header>
+                    <p class="current-month-year"> <span id="calMonth"></span>  <span id="calYear"></span></p>
+                    <div class="icons_month"> 
+                        <button id ="prevMonth">&lt;</button>
+                        
+                        <button id ="nextMonth">&gt;</button>
+                    </div>
+                </header>
+
+                <!-- <P>Current Year: <b id ="CalYear"></b></P>
+                <p>Current Month: <b id ="CalMonth"></b></p> -->
+                <div class="calendar">
+                    <table id = "calTable">
+                        <tr>
+                        
+                        <th id="0"><strong>Sun</strong></th>
+                        <th id="1"><strong>Mon</strong></th>
+                        <th id="2"><strong>Tue</strong></th>
+                        <th id="3"><strong>Wed</strong></th>
+                        <th id="4"><strong>Thu</strong></th>
+                        <th id="5"><strong>Fri</strong></th>
+                        <th id="6"><strong>Sat</strong></th>
+                        </tr>
+
+                        <tr id="w0"></tr>
+                        <tr id="w1"></tr>
+                        <tr id="w2"></tr>
+                        <tr id="w3"></tr>
+                        <tr id="w4"></tr>
+                        <tr id="w5"></tr>
+                        <tr id="w6"></tr>
+                        
+                    </table>
                 </div>
-            </header>
+            </div>
 
-            <!-- <P>Current Year: <b id ="CalYear"></b></P>
-            <p>Current Month: <b id ="CalMonth"></b></p> -->
-            <div class="calendar">
-                <table id = "calTable">
-                    <tr>
-                    
-                    <th id="0"><strong>Sun</strong></th>
-                    <th id="1"><strong>Mon</strong></th>
-                    <th id="2"><strong>Tue</strong></th>
-                    <th id="3"><strong>Wed</strong></th>
-                    <th id="4"><strong>Thu</strong></th>
-                    <th id="5"><strong>Fri</strong></th>
-                    <th id="6"><strong>Sat</strong></th>
-                    </tr>
-
-                    <tr id="w0"></tr>
-                    <tr id="w1"></tr>
-                    <tr id="w2"></tr>
-                    <tr id="w3"></tr>
-                    <tr id="w4"></tr>
-                    <tr id="w5"></tr>
-                    <tr id="w6"></tr>
-                    
-                </table>
+            <div class="wrapper" id="calendars">
+                <header>
+                    <h2>Your Available Calendars</h2>
+                    <button id="createCaltBtn">Create Calendar</button>
+                </header>
+                <div class="calendars-list">
+                    <ul id="calList">
+                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar1">
+                        <label for="testCheckbox">Calendar1</label> <br>
+                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar2">
+                        <label for="testCheckbox">Calendar2</label> <br>
+                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar3">
+                        <label for="testCheckbox">Calendar2</label> <br>
+                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar4">
+                        <label for="testCheckbox">Calendar3</label> <br>
+                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar5">
+                        <label for="testCheckbox">Calendar4</label> <br>
+                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar6">
+                        <label for="testCheckbox">Calendar5</label> <br>
+                        
+                        <span id="calListInnerText"></span>
+                    </ul>
+                </div>
             </div>
         </div>
         <br>
@@ -117,7 +144,7 @@
         <div class="wrapper" id="EventDisplay">
             <header>
                 <h2>Events on <b id ="eventDate"></b></h2>
-                <button id="addEventBtn">Add Event</button>
+                <button id="addEventBtn">Add Event</button> // this button should only appear if a user is logged in
             </header>
             <div class="event-display">
                 <div class="list-events">

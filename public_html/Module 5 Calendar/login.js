@@ -7,6 +7,8 @@ let display = 0;
 const logOutBtn = document.getElementById("logOutBtn");
 let isLogOut = true;
 
+const addEventBtn = document.getElementById("addEventBtn");
+
 // Event Listeners
 
 function loginUser(event){
@@ -48,11 +50,11 @@ function loginUser(event){
 function toggleLogin(){
     if (!isLogOut) {
         logOutBtn.style.display = "block";
-        // isLogOut = true;
+        addEventBtn.disabled = true;
         console.log("Displaying logout button");
     } else {
         logOutBtn.style.display = "none";
-        // isLogOut = false;
+        addEventBtn.disabled = false;
         console.log("Hidding logout button");
     }
 }
