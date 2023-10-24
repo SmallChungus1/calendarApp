@@ -25,6 +25,9 @@ createEventBtn.addEventListener("click", showCreate, false);
 
 delateEventBtn = document.getElementById("deleteEventBtn");
 
+searchBtn = document.getElementById("searchBtn");
+searchBtn.addEventListener("click", searchEvents, false);
+
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
 
@@ -56,23 +59,10 @@ function updateCalendar(){
 		let days = weeks[w].getDates();
 		// console.log("weeks: "+w);
 		weekID = "w"+w;
-	
-		// days contains normal JavaScript Date objects.
-		
-		//console.log("Week starting on "+days[0]);
 		
 		for(let d in days){
-			// You can see console.log() output in your JavaScript debugging tool, like Firebug,
-			// WebWit Inspector, or Dragonfly.
-			//console.log(days[d].toISOString());
 			
 			if(days[d].getMonth() === currentMonth.month){
-				// const oneDay = document.createElement("p");
-				// dateNum = document.createTextNode(days[d].getDate());
-				// oneDay.appendChild(dateNum);
-				// document.getElementById(days[d].getDay()).appendChild(oneDay);
-
-				//console.log(weekID)
 				const oneDay = document.createElement("TD");
 				
 				dateNum = document.createTextNode(days[d].getDate());
@@ -81,10 +71,6 @@ function updateCalendar(){
 				document.getElementById(weekID).appendChild(oneDay);
 
 			}else{
-			// 	const oneDay = document.createElement("p");
-			// 	dateNum = document.createTextNode("-");
-			// 	oneDay.appendChild(dateNum);
-			// document.getElementById(days[d].getDay()).appendChild(oneDay);
 
 				const oneDay = document.createElement("TD");
 				dateNum = document.createTextNode("-");
@@ -92,9 +78,6 @@ function updateCalendar(){
 				document.getElementById(weekID).appendChild(oneDay);
 						
 			}
-
-			
-			
 		}
 	}
 
@@ -103,10 +86,7 @@ function updateCalendar(){
 		refreshColorCalendar();
 	}
 	
-	
 }
-
-
 
 function handleClick(){
 	clearEventList();
@@ -276,6 +256,75 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 
 	}
 //}
+
+function searchEvents(){
+	clearSearchEvents();
+	let searchData = document.getElementById("search-input").value;
+	const data = {'searchData': searchData};
+	console.log(data);
+	fetch("eventSearch.php", {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'content-type': 'application/json'}
+	})
+	.then(response=>response.json())
+	.then(data=> {
+		if(data.success){
+			searchEventsArray = data.message;
+			
+			let searchEventsList = document.getElementById("searchEventList");
+
+			for (let i = 0; i<searchEventsArray.length; i++){
+				
+				const singleEvent = searchEventsArray[i];
+				const anEvent = document.createElement("li");
+				eventTitle = document.createTextNode(singleEvent["title"]);
+
+				document.getElementById("searchQuery").innerText = searchData;
+				document.getElementById("search-input").value = "";
+				
+				anEvent.appendChild(eventTitle);
+				anEvent.addEventListener("click", () => {
+					cleardisplayEvents();
+					document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
+					document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
+					document.getElementById("eventDetailTS").innerText = singleEvent["timeStart"];
+					document.getElementById("eventDetailTE").innerText = singleEvent["timeEnd"];
+					document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
+					document.getElementById("eventDetailID").innerText = singleEvent["eventID"];
+					document.getElementById("eventSharedWith").innerText = singleEvent["sharedWith"];
+					document.getElementById("eventDetailOwner").innerText = singleEvent["owner"];
+
+					document.getElementById("event-title").value = singleEvent["title"];
+					document.getElementById("event-id").value = singleEvent["eventID"];
+					document.getElementById("event-date").value = singleEvent["eventDate"];
+					document.getElementById("event-start").value = singleEvent["timeStart"];
+					document.getElementById("event-end").value = singleEvent["timeEnd"];
+					document.getElementById("event-description").value = singleEvent["description"];
+					document.getElementById("event-share").value = singleEvent["sharedWith"];
+				}, false)
+				searchEventsList.appendChild(anEvent);
+			}
+			
+		}else{
+			alert(`Data Retrival not successful ${data.message}`);
+			document.getElementById("eventDate").innerText=fullDate;
+			document.getElementById("eventListInnerText").innerText="No Events Yet";
+		}
+	}  
+		)
+	.catch(err => console.error(err))
+
+}
+
+function clearSearchEvents(){
+	const searchEventList = document.getElementById("searchEventList");
+	document.getElementById("searchEventsInnerText").innerText="";
+	let currEvent = Array.from(searchEventList.getElementsByTagName("LI"));
+	currEvent.forEach(aChild => {
+		aChild.remove();
+	})
+}
 
 function cleardisplayEvents(){
 	document.getElementById("eventDetailTitle").innerText="";

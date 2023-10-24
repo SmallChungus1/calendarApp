@@ -26,6 +26,8 @@ logOutBtn.addEventListener("click", ()=>{
 
             loggedInStatus = false;
             logOutBtn.style.display = "none";
+            searchInput.style.display = "none";
+            searchBtn.style.display = "none";
             addEventBtn.disabled = true;
             editEventBtn.disabled = true;
           //  toggleLogin();

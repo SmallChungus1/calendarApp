@@ -5,6 +5,8 @@ const signout = document.getElementById("calLogin");
 let display = 0;
 
 const logOutBtn = document.getElementById("logOutBtn");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("searchBtn")
 let isLogOut = true;
 
 const addEventBtn = document.getElementById("addEventBtn");
@@ -37,6 +39,8 @@ function loginUser(event){
             document.getElementById("eventCreateToken").value=loginData.message[1]; //the generated token
             document.getElementById("eventEditToken").value=loginData.message[1];
             logOutBtn.style.display = "block";
+            searchInput.style.display = "block";
+            searchBtn.style.display = "block";
             addEventBtn.disabled = false;
             editEventBtn.disabled = false;
           //  toggleLogin();

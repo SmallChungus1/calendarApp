@@ -18,6 +18,11 @@ $eventTE = htmlentities($json_obj['eventTE']);
 $eventDesc = htmlentities($json_obj['eventDesc']);
 $csrfToken = htmlentities($json_obj['eventToken']);
 $eventID = htmlentities($json_obj['eventID']);
+$shareWith = htmlentities($json_obj['shareWith']);
+
+if(empty($shareWith)){
+    $shareWith = null;
+}
 
 // if(isset($eventID)){
 //     echo json_encode(array(
@@ -51,7 +56,7 @@ if($username !== $_SESSION["currUser"]){
 }else{
     
 
-    $stmt = $mysqli->prepare("update events set title = '$eventTitle', eventDate='$eventDate', timeStart='$eventTS', timeEnd='$eventTE', description='$eventDesc' where eventID=? and owner=?");
+    $stmt = $mysqli->prepare("update events set title = '$eventTitle', eventDate='$eventDate', timeStart='$eventTS', timeEnd='$eventTE', description='$eventDesc', sharedWith='$shareWith' where eventID=? and owner=?");
     //$stmt = $mysqli->prepare("update events set title = '$eventTitle' where eventID=? and owner=?");  
      $stmt->bind_param('is', $eventID, $username);
     

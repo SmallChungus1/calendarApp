@@ -11,6 +11,7 @@
     <script src="addEvent.js" defer></script>
     <script src="editEvent.js" defer></script>
     <script src="eventDel.js" defer></script>
+    <script src="openWeatherAPI.js" defer></script>
 </head>
 <body>
     <div class="navbar">
@@ -20,8 +21,8 @@
             </div>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><input type="text" placeholder="Event..."><a id="search">Search</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><input id="search-input" type="text" placeholder="Event..."><a id="searchBtn">Search</a></li>
                     <li><a id="logOutBtn">Log out</a></li>
                 </ul>
             </div>
@@ -199,10 +200,10 @@
             <div class="wrapper" id="search-display">
                 <header>
                     <h2>Search Events</h2>
-                    <!-- <button id="createCaltBtn">Create Calendar</button> -->
+                    <p>Query: <b id ="searchQuery"></b></p>
                 </header>
                 <div class="search-events">
-                    <ul id="EventList">
+                    <ul id="searchEventList">
                         <span id="searchEventsInnerText"></span>
                     </ul>
                 </div>
