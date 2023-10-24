@@ -12,7 +12,29 @@ fetch("http://api.openweathermap.org/data/2.5/weather?appid=83ace4c88bc338ad1fd4
 .then(data=>{
     console.log(typeof(data));
     console.log(data);
-    console.log(data.coord);
+    const cityName = data.name;
+    let temperature = data.main.temp;
+    temperature = Number(temperature - 273.15); //convert to celsius
+    temperature = Math.round(temperature);
+    const weatherData = data.weather[0].main;
+    const weatherDescData = data.weather[0].description;
+    console.log(cityName, temperature, weatherData, weatherDescData);
+    document.getElementById("cityName").innerText = cityName;
+    document.getElementById("cityTemp").innerText = temperature;
+    document.getElementById("cityWeather").innerText = weatherData;
+    document.getElementById("cityWeatherDesc").innerText = weatherDescData;
+
+    let recommendation;
+if (temperature > 10 && !weatherData.includes("rain") ){
+     recommendation = "Good weather add outdoors activites to your calendar";
+    }else if (temperature > 30){
+         recommendation = "It is too hot, plan your activites indoor";
+    }else if (temperature <= 10){
+         recommendation = "A bit cold today to add outdoor activites to you calendar";
+    }else if (weatherData.includes("rain") || weatherData.contain("storm")){
+         recommendation = "Bad weather today, should plan your day indoors";
+    }
+    document.getElementById("recommendedActivity").innerText = recommendation;
 })
 .catch(err => console.error(err));
 }
