@@ -243,6 +243,7 @@ function showEdit() {
 		eventDetailDisplayForm.style.display = "block";
 		deleteEventBtn.style.display = "block";
 	}
+	getEvents();
 }
 
 function showCreate() {
@@ -256,6 +257,7 @@ function showCreate() {
 		listEvents.style.display = "none";
 		createEvent.style.display = "block";
 	}
+	getEvents();
 }
 
 function showCreateCalendar(){
@@ -269,6 +271,7 @@ function showCreateCalendar(){
 		listEvents.style.display = "none";
 		createEvent.style.display = "block";
 	}
+	
 }
 
 function clearEventList(){
