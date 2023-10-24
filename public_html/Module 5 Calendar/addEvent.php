@@ -19,11 +19,11 @@ $eventTE = htmlentities($json_obj['eventTE']);
 $eventDesc = htmlentities($json_obj['eventDesc']);
 $csrfToken = htmlentities($json_obj['eventToken']);
 $eventID = null; // will use autoincrement
-$sharedWith = null; //not using
+$sharedWith = null;
 
-if(isset($json_obj['sharedWith'])){
-    $sharedWith = htmlentities($json_obj['sharedWith']);
-}
+// if(isset($json_obj['sharedWith'])){
+//     $sharedWith = htmlentities($json_obj['sharedWith']);
+// }
 
 
 if (!hash_equals($_SESSION["token"] ,$csrfToken)){
@@ -57,7 +57,7 @@ if($username !== $_SESSION["currUser"]){
     {
         echo json_encode(array(
             "success" => false,
-            "message" => "Insertion of new event failed for: ".$eventTitle
+            "message" => "Insertion of new event failed for: ".$sharedWith
         ));
         exit;
     }else{

@@ -201,6 +201,11 @@ body {
     color: aqua;
 }
 
+.currSelectedDate{
+    background-color: green;
+    color: yellow;
+}
+
 .flex-container {
     display: flex;
     flex-direction: column;

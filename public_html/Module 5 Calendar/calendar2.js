@@ -4,6 +4,13 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 let loggedInStatus = false;
 let currentRenderedEvents = [];
 let currDaytemp = null;
+let fullDate;
+let prevSelectedDay = null;
+
+const viewMyCal = document.getElementById("viewSelfOnly");
+const viewMyAndShareCal = document.getElementById("viewShared");
+const viewShareCal = document.getElementById("viewJustShared");
+
 
 // Change the month when the "next" button is pressed
 
@@ -102,7 +109,7 @@ function updateCalendar(){
 
 
 function handleClick(){
-	
+	clearEventList();
 	for(let i = 0; i < 7; i++){
 
 		weekID = "w"+i
@@ -123,7 +130,12 @@ function handleClick(){
 
 			currDay[k].addEventListener("click",function(){
 				
+				if(prevSelectedDay){
+					prevSelectedDay.classList.remove("currSelectedDate");
+				}
 				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
+				prevSelectedDay = currDay[k];
+				currDay[k].classList.add("currSelectedDate");
 				getEvents();
 				
 				
@@ -133,6 +145,30 @@ function handleClick(){
 	}
 }
 
+
+viewMyCal.addEventListener("click", ()=>{
+	console.log("clicked");
+	// currentRenderedEvents = [];
+	getEvents();
+	refreshColorCalendar();
+	
+}, false);
+
+viewMyAndShareCal.addEventListener("click", ()=>{
+	console.log("clicked");
+	// currentRenderedEvents = [];
+	getEvents();
+	refreshColorCalendar();
+	
+}, false);
+
+ viewShareCal.addEventListener("click", ()=>{
+	console.log("clicked");
+	// currentRenderedEvents = [];
+	getEvents();
+	refreshColorCalendar();
+	
+}, false);
 
 
 	function colorCalendar(currDay2, fullDate2){
@@ -169,6 +205,7 @@ function handleClick(){
 			}
 		}
 	}	
+
 
 	function getEvents(){
 		clearEventList();
@@ -286,7 +323,7 @@ function showCreate() {
 		listEvents.style.display = "none";
 		createEvent.style.display = "block";
 	}
-	getEvents();
+	//getEvents(); //Not sure if we need this. It will throw an error if you click on the button with this function call because getEvents makes a call to the sql database
 }
 
 function showCreateCalendar(){
