@@ -26,13 +26,13 @@ fetch("http://api.openweathermap.org/data/2.5/weather?appid=83ace4c88bc338ad1fd4
 
     let recommendation;
 if (temperature > 10 && !weatherData.includes("rain") ){
-     recommendation = "Good weather add outdoors activites to your calendar";
+     recommendation = "Good weather! add outdoor activites to your calendar 😹😺";
     }else if (temperature > 30){
-         recommendation = "It is too hot, plan your activites indoor";
+         recommendation = "It is too hot, plan your activites indoor 😾";
     }else if (temperature <= 10){
-         recommendation = "A bit cold today to add outdoor activites to you calendar";
+         recommendation = "A bit cold today to add outdoor activites to you calendar 😿";
     }else if (weatherData.includes("rain") || weatherData.contain("storm")){
-         recommendation = "Bad weather today, should plan your day indoors";
+         recommendation = "Bad weather today, should plan your day indoors 🙀";
     }
     document.getElementById("recommendedActivity").innerText = recommendation;
 })
