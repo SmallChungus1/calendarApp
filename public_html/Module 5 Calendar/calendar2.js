@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", updateCalendar, false);
 
 editEventBtn = document.getElementById("editEventBtn");
 editEventBtn.addEventListener("click", showEdit, false);
-
+editEventBtn.disabled = true;
 createEventBtn = document.getElementById("addEventBtn");
 createEventBtn.addEventListener("click", showCreate, false);
 
@@ -309,7 +309,7 @@ function showEdit() {
 		eventDetailDisplayForm.style.display = "block";
 		deleteEventBtn.style.display = "block";
 	}
-	getEvents();
+	//getEvents();
 }
 
 function showCreate() {

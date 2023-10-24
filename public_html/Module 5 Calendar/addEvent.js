@@ -17,11 +17,7 @@ const eventDesc = document.getElementById("create-event-description").value;
 const username = document.getElementById("currUser").innerText;
 const sharedWith = document.getElementById("create-share-event").value;
 const eventCreateToken = document.getElementById("eventCreateToken").value;
-    // console.log("username: ", username);
-    // console.log("eventTitle: ", eventTitle);
-    // console.log("date: ", eventDate);
-    // console.log("clicked!");
-   // console.log("event token: ", eventCreateToken);
+    console.log(sharedWith);
     const data = {"eventTitle": eventTitle, "eventDate":eventDate,"eventTS":eventTS,"eventTE":eventTE,"eventDesc":eventDesc, "username":username, "eventToken":eventCreateToken, "sharedWith":sharedWith};
     fetch("addEvent.php", {
         method: 'POST',

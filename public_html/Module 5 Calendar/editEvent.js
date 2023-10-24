@@ -10,6 +10,7 @@ const eventTimeEnd = document.getElementById("event-end").value;
 const eventDescription = document.getElementById("event-description").value;
 const username = document.getElementById("currUser").innerText;
 const eventEditToken = document.getElementById("eventEditToken").value;
+const shareWith = document.getElementById("editEventBtn").value;
 console.log(eventTitle);
 console.log(eventID);
 console.log(eventDate);
