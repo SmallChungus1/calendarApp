@@ -86,10 +86,17 @@ function updateCalendar(){
 						
 			}
 
-			//handleClick();
+			
 			
 		}
 	}
+
+	if(loggedInStatus){
+		handleClick();
+		refreshColorCalendar();
+	}
+	
+	
 }
 
 
@@ -107,12 +114,20 @@ function handleClick(){
 			//console.log(currDay[i])
 			// fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 			fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
-			colorCalendar(currDay[k]);
-			currDaytemp = currDay[k];
+			
+			//currDaytemp = currDay[k];
+			//colorCalendar();
+			//refreshColorCalendar();
+
+		
+
 			currDay[k].addEventListener("click",function(){
+				
 				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 				getEvents();
-				console.log(fullDate);
+				
+				
+				//console.log(fullDate);
 			}, false);
 		}
 	}
@@ -120,8 +135,10 @@ function handleClick(){
 
 
 
-	function colorCalendar(currDay){
-		const data = {'date': fullDate};
+	function colorCalendar(currDay2, fullDate2){
+
+		const shareValue = 'false';
+		const data = {'date': fullDate2, 'shareValue':shareValue};
 		fetch("eventServe.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
@@ -130,7 +147,7 @@ function handleClick(){
 		.then(response=>response.json())
 		.then(data => {
 			if(data.success){
-				currDay.classList.add("activeEventDates");
+				currDay2.classList.add("activeEventDates");
 			}
 			
 		})
@@ -138,9 +155,20 @@ function handleClick(){
 
 	}
 
-	function colorCalendar2(){
+	function refreshColorCalendar(){
+		for(let i = 0; i < 7; i++){
 
-	}
+			let weekID2 = "w"+i
+			let dayOfWeek2 = document.getElementById(weekID2);
+			
+			let currDay2 = dayOfWeek2.getElementsByTagName("TD");
+			let fullDate2;
+			for (let k = 0; k<currDay2.length; k++){
+				 fullDate2 = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay2[k].innerText;
+				colorCalendar(currDay2[k], fullDate2);
+			}
+		}
+	}	
 
 	function getEvents(){
 		clearEventList();
@@ -172,6 +200,7 @@ function handleClick(){
 					const anEvent = document.createElement("li");
 					eventTitle = document.createTextNode(singleEvent["title"]);
 					currentRenderedEvents.push(currDaytemp);
+					console.log(currentRenderedEvents);
 					
 					anEvent.appendChild(eventTitle);
 					anEvent.addEventListener("click", () => {

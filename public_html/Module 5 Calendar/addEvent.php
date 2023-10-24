@@ -21,6 +21,10 @@ $csrfToken = htmlentities($json_obj['eventToken']);
 $eventID = null; // will use autoincrement
 $sharedWith = null; //not using
 
+if(isset($json_obj['sharedWith'])){
+    $sharedWith = htmlentities($json_obj['sharedWith']);
+}
+
 
 if (!hash_equals($_SESSION["token"] ,$csrfToken)){
     echo json_encode(array(
