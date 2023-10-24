@@ -70,6 +70,38 @@ nav ul li a:hover {
     text-decoration-thickness: 3px;
 }
 
+
+nav ul li input[type="text"] {
+    display: inline-block;
+    outline: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Popins', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    background-color: #1dd5f100;
+    border-radius: 4px;
+    border: none;
+    width: 100px;
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+}
+
+nav ul li input[type="text"]::placeholder {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'Popins', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    background-color: #1dd5f100;
+    border-radius: 4px;
+    border: none;
+    width: 100px;
+}
+
 body {
     font-family: 'Roboto', sans-serif; /* or 'Open Sans', 'Montserrat', 'Lato', 'Nunito', 'Raleway', 'Source Sans Pro', 'Ubuntu', etc. */
     align-items: center;
@@ -191,4 +223,9 @@ body {
 
 #deleteEventBtn {
     display: none;
+}
+
+.search-events {
+    overflow-y: scroll;
+    max-height: 200px;
 }

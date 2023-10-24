@@ -2,7 +2,8 @@
 let currentMonth = new Month(2023, 9); // October 2023
 const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November","December"];
 let loggedInStatus = false;
-
+let currentRenderedEvents = [];
+let currDaytemp = null;
 
 // Change the month when the "next" button is pressed
 
@@ -17,16 +18,13 @@ createEventBtn.addEventListener("click", showCreate, false);
 
 delateEventBtn = document.getElementById("deleteEventBtn");
 
-createCalendarBtn = document.getElementById("createCalendarBtn");
-createCalendarBtn.addEventListener("click", showCreateCalendar, false);
-
 document.getElementById("calYear").innerText = currentMonth.year;
 document.getElementById("calMonth").innerText = months[currentMonth.month];
 
 document.getElementById("nextMonth").addEventListener("click", function(event){
 	currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-	handleClick();
+	//handleClick();
 	console.log("The new month is "+currentMonth.month+" "+currentMonth.year);
 	document.getElementById("calYear").innerText = currentMonth.year;
 	document.getElementById("calMonth").innerText = months[currentMonth.month];
@@ -35,7 +33,7 @@ document.getElementById("nextMonth").addEventListener("click", function(event){
 document.getElementById("prevMonth").addEventListener("click", function(event){
 	currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-	handleClick();
+	//handleClick();
 	console.log("The new month is "+currentMonth.month+" "+currentMonth.year);
 	document.getElementById("calYear").innerText = currentMonth.year;
 	document.getElementById("calMonth").innerText = months[currentMonth.month];
@@ -87,6 +85,8 @@ function updateCalendar(){
 				document.getElementById(weekID).appendChild(oneDay);
 						
 			}
+
+			//handleClick();
 			
 		}
 	}
@@ -108,17 +108,17 @@ function handleClick(){
 			// fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 			fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 			colorCalendar(currDay[k]);
-
+			currDaytemp = currDay[k];
 			currDay[k].addEventListener("click",function(){
-				
-
-
 				fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 				getEvents();
 				console.log(fullDate);
 			}, false);
 		}
 	}
+}
+
+
 
 	function colorCalendar(currDay){
 		const data = {'date': fullDate};
@@ -137,10 +137,25 @@ function handleClick(){
 		.catch(err => console.error(err))
 
 	}
+
+	function colorCalendar2(){
+
+	}
+
 	function getEvents(){
 		clearEventList();
 		const currDate = fullDate;
-		const data = {'date': currDate};
+		const sharedOptions = document.getElementsByName("shareOption");
+		let shareValue = null;
+		for (let i=0; i<sharedOptions.length; i++){
+			if(sharedOptions[i].checked){
+				shareValue = sharedOptions[i].value;
+				break;
+			}
+		}
+		
+		const data = {'date': currDate, 'shareValue': shareValue};
+		console.log(data);
 		fetch("eventServe.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
@@ -149,16 +164,14 @@ function handleClick(){
 		.then(response=>response.json())
 		.then(data=> {
 			if(data.success){
-				// alert(`Data retrival successful`);
-				dataMsgArry = data.message;
-
-				// alert(dataMsgArry["eventDate"]);
-				
-				document.getElementById("eventDate").innerText=dataMsgArry[0]["eventDate"];
-				for (let i = 0; i<dataMsgArry.length; i++){
-					const singleEvent = dataMsgArry[i];
+				eventsArray = data.message;
+				document.getElementById("eventDate").innerText=eventsArray[0]["eventDate"];
+				for (let i = 0; i<eventsArray.length; i++){
+					
+					const singleEvent = eventsArray[i];
 					const anEvent = document.createElement("li");
 					eventTitle = document.createTextNode(singleEvent["title"]);
+					currentRenderedEvents.push(currDaytemp);
 					
 					anEvent.appendChild(eventTitle);
 					anEvent.addEventListener("click", () => {
@@ -170,6 +183,7 @@ function handleClick(){
 						document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
 						document.getElementById("eventDetailID").innerText = singleEvent["eventID"];
 						document.getElementById("eventSharedWith").innerText = singleEvent["sharedWith"];
+						document.getElementById("eventDetailOwner").innerText = singleEvent["owner"];
 
 						document.getElementById("event-title").value = singleEvent["title"];
 						document.getElementById("event-id").value = singleEvent["eventID"];
@@ -195,7 +209,7 @@ function handleClick(){
 
 
 	}
-}
+//}
 
 function cleardisplayEvents(){
 	document.getElementById("eventDetailTitle").innerText="";

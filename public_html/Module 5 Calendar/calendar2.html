@@ -16,14 +16,12 @@
     <div class="navbar">
         <nav>
             <div class="logo">
-                <a href="calendar.html">CALENDAR</a>
+                <a >CALENDAR</a>
             </div>
             <div class="nav-wrapper">
                 <ul>
-                    <!-- <li><a href="calendar.html">Home</a></li> -->
-                    <!-- <li><a href="calendar.html">How to Use</a></li> -->
                     <li><a href="about.html">About</a></li>
-                    <!-- <li><a href="login.html">Log In</a></li> -->
+                    <li><input type="text" placeholder="Event..."><a id="search">Search</a></li>
                     <li><a id="logOutBtn">Log out</a></li>
                 </ul>
             </div>
@@ -87,8 +85,6 @@
                     </div>
                 </header>
 
-                <!-- <P>Current Year: <b id ="CalYear"></b></P>
-                <p>Current Month: <b id ="CalMonth"></b></p> -->
                 <div class="calendar">
                     <table id = "calTable">
                         <tr>
@@ -114,33 +110,20 @@
                 </div>
             </div>
 
-            <div class="wrapper" id="calendars">
+            <div class="wrapper" id="sharedWith">
                 <header>
-                    <h2>Your Available Calendars</h2>
-                    <button id="createCaltBtn">Create Calendar</button>
+                    <h2>View Calendars</h2>
+                    <!-- <button id="createCaltBtn">Create Calendar</button> -->
                 </header>
                 <div class="calendars-list">
-                    <ul id="calList">
-                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar1">
-                        <label for="testCheckbox">Calendar1</label> <br>
-                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar2">
-                        <label for="testCheckbox">Calendar2</label> <br>
-                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar3">
-                        <label for="testCheckbox">Calendar2</label> <br>
-                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar4">
-                        <label for="testCheckbox">Calendar3</label> <br>
-                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar5">
-                        <label for="testCheckbox">Calendar4</label> <br>
-                        <input type="checkbox" id="testCheckbox" name="testCheckbox" value="Calendar6">
-                        <label for="testCheckbox">Calendar5</label> <br>
-                        
-                        <span id="calListInnerText"></span>
+                    <ul id="shareList">
+                        <input type="radio" id="viewSelfOnly" name="shareOption" value="false" checked="checked">
+                        <label for="viewSelfOnly">My Calendar</label><br>
+                        <input type="radio" id="viewShared" name="shareOption" value="true">
+                        <label for="viewShared">My Calendar and Shared Calendar</label><br>
+                        <input type="radio" id="viewJustShared" name="shareOption" value="true2">
+                        <label for="viewJustShared">Shared Calendar</label><br>
                     </ul>
-                </div>
-                <div class="create-calendar">
-                    <label>Calendar Name:</label> <br>
-                    <input type="text" id="create-calendar-name"> <br>
-                    <button id="createCalendarBtn">Create</button>
                 </div>
             </div>
         </div>
@@ -176,40 +159,54 @@
             </div>
         </div>
 
-        <div class="wrapper" id="eventDetailDisplay">
-            <header>
-                <h2><span id="eventDetailTitle"></span></h2>
-                <div class="event-buttons"> 
-                    <button id="editEventBtn">Edit</button>
-                    <button id="deleteEventBtn">Delete</button>
+        <div class="flex-container">
+            <div class="wrapper" id="eventDetailDisplay">
+                <header>
+                    <h2><span id="eventDetailTitle"></span></h2>
+                    <div class="event-buttons"> 
+                        <button id="editEventBtn">Edit</button>
+                        <button id="deleteEventBtn">Delete</button>
+                    </div>
+                </header>
+                <div class="event-detail-display">
+                    <p>Owner: <span id="eventDetailOwner"></span></p>
+                    <p>Event ID: <span id="eventDetailID"></span></p>
+                    <p>Date: <span id ="eventDetailDate"></span></p>
+                    <p>Time start: <span id ="eventDetailTS"></span></p>
+                    <p>Time end: <span id ="eventDetailTE"></span></p>
+                    <p>Description <span id ="eventDetailDesc"></span></p>
+                    <p>Shared With: <span id ="eventSharedWith"></span></p>
                 </div>
-            </header>
-            <div class="event-detail-display">
-                <p>Event ID: <span id="eventDetailID"></span></p>
-                <p>Date: <span id ="eventDetailDate"></span></p>
-                <p>Time start: <span id ="eventDetailTS"></span></p>
-                <p>Time end: <span id ="eventDetailTE"></span></p>
-                <p>Description <span id ="eventDetailDesc"></span></p>
-                <p>Shared With: <span id ="eventSharedWith"></span></p>
-            </div>
-            <div class="event-detail-display-form">
-                <label>Event Title:</label> <br>
-                <input type="text" id="event-title" value=""> <br>
-                <input type="number" id="event-id" hidden>
-                <label>Date:</label><br>
-                <input type="date" id="event-date"> <br>
-                <label>Time Start:</label><br>
-                <input type="time" id="event-start"> <br>
-                <label>Time End:</label><br>
-                <input type="time" id="event-end"> <br>
-                <label>Description:</label><br>
-                <input type="text" id="event-description"><br>
-                <label>Shared With:</label><br>
-                <input type="text" id="event-share"><br>
-                <input type="hidden" name="token" id="eventEditToken" value="" />
-                <button id="updateBtn">Update</button>
+                <div class="event-detail-display-form">
+                    <label>Event Title:</label> <br>
+                    <input type="text" id="event-title" value=""> <br>
+                    <input type="number" id="event-id" hidden>
+                    <label>Date:</label><br>
+                    <input type="date" id="event-date"> <br>
+                    <label>Time Start:</label><br>
+                    <input type="time" id="event-start"> <br>
+                    <label>Time End:</label><br>
+                    <input type="time" id="event-end"> <br>
+                    <label>Description:</label><br>
+                    <input type="text" id="event-description"><br>
+                    <label>Shared With:</label><br>
+                    <input type="text" id="event-share"><br>
+                    <input type="hidden" name="token" id="eventEditToken" value="" />
+                    <button id="updateBtn">Update</button>
+                </div>
             </div>
 
+            <div class="wrapper" id="search-display">
+                <header>
+                    <h2>Search Events</h2>
+                    <!-- <button id="createCaltBtn">Create Calendar</button> -->
+                </header>
+                <div class="search-events">
+                    <ul id="EventList">
+                        <span id="searchEventsInnerText"></span>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
