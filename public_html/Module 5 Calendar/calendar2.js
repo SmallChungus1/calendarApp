@@ -319,7 +319,6 @@ function searchEvents(){
 
 function clearSearchEvents(){
 	const searchEventList = document.getElementById("searchEventList");
-	document.getElementById("searchEventsInnerText").innerText="";
 	let currEvent = Array.from(searchEventList.getElementsByTagName("LI"));
 	currEvent.forEach(aChild => {
 		aChild.remove();

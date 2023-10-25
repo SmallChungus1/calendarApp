@@ -28,6 +28,7 @@ fetch("editEvent.php", {
 .then(response =>response.json())
 .then(data=>{
     alert(data.message);
+    getEvents();
    
 })
 .catch(err => console.error(err));

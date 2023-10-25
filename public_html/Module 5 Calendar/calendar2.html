@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,8 @@
     <script src="editEvent.js" defer></script>
     <script src="eventDel.js" defer></script>
     <script src="openWeatherAPI.js" defer></script>
+    <link rel="shortcut icon" href="#"> 
+    <!-- citation for line of code (line 16) above: https://stackoverflow.com/questions/31075893/how-to-fix-favicon-ico-error-failed-to-load-resource-neterr-empty-response -->
 </head>
 <body>
     <div class="navbar">
@@ -28,108 +31,149 @@
             </div>
         </nav>
     </div>
-    <div class="wrapper" id="weatherDiv">
-        <header>
-            <p> <b>City:</b> <span id="cityName"></span> | <b>Temperature:</b> <span id="cityTemp"></span> °C | <b>Weather:</b> <span id="cityWeather"></span>, <span id="cityWeatherDesc"></span> | <b>Recommendation:</b> <span id="recommendedActivity"></span></p>
-           
-        </header>
-    </div>
-    <div class="wrapper" id="accountLogin">
-        <div class="account-content">
-            <heading>
-                <h2 id="welcomeMsg">Welcome <b id="currUser"></b></h2>
-            </heading>
-
-            <div class="container" id ="calLogin">
-                <h3>Log In:</h3>
-                <input type="text" id="username" placeholder="Username" required/><br>
-                <input type="password" id="password" placeholder="Password" required/>
-                <button id="loginBtn">Log In</button>
+    <div class="main-section">
+        <div class="wrapper" id="weatherDiv">
+            <div class="header">
+                <p> <b>City:</b> <span id="cityName"></span> | <b>Temperature:</b> <span id="cityTemp"></span> °C | <b>Weather:</b> <span id="cityWeather"></span>, <span id="cityWeatherDesc"></span> | <b>Recommendation:</b> <span id="recommendedActivity"></span></p>
             </div>
+        </div>
 
-            <div class="container" id ="calSignUp">
-                <h3>Sign Up:</h3>
-                <input type="text" id="usernameReg" placeholder="Username" required/><br>
-                <input type="password" id="passwordReg" placeholder="Password" required/><br>
-                <input type="password" id="passwordConfirm" placeholder="Confirm Password"required />
-                <button id="signUpBtn">SignUp</button>
+        <div class="wrapper">
+            <div class="account-content">
+                <div class="header">
+                    <h2 id="welcomeMsg">Welcome <b id="currUser"></b></h2>
+                </div>
+
+                <div class="container" id ="calLogin">
+                    <h3>Log In:</h3>
+                    <input type="text" id="username" placeholder="Username" required><br>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button id="loginBtn">Log In</button>
+                </div>
+
+                <div class="container" id ="calSignUp">
+                    <h3>Sign Up:</h3>
+                    <input type="text" id="usernameReg" placeholder="Username" required><br>
+                    <input type="password" id="passwordReg" placeholder="Password" required><br>
+                    <input type="password" id="passwordConfirm" placeholder="Confirm Password" required>
+                    <button id="signUpBtn">SignUp</button>
+                </div>
             </div>
         </div>
     </div>
 
-
-    <button onclick="hideShow()">Hide and Show</button>
-
-    <!-- <script>
-        // we need to implement this function to hide and show the login and sign up divs if a user is logged in and make the logout page appear
-        // This should probably be done in the login.js file
-        var div = document.getElementById("calSignUp");
-        var div2 = document.getElementById("calLogin");
-
-        var display = 0;
-        function hideShow() {
-            if (display == 1) {
-                div.style.display = "block";
-                div2.style.display = "block";
-                display = 0;
-            } else {
-                div.style.display = "none";
-                div2.style.display = "none";
-                display = 1;
-            }
-        }
-    </script>
-         -->
     <div class="main-section">
         <div class="flex-container">
             <div class="wrapper" id="calendarBody">
-                <header>
+                <div class="header">
                     <p class="current-month-year"> <span id="calMonth"></span>  <span id="calYear"></span></p>
                     <div class="icons_month"> 
                         <button id ="prevMonth">&lt;</button>
                         
                         <button id ="nextMonth">&gt;</button>
                     </div>
-                </header>
+                </div>
 
                 <div class="calendar">
-                    <table id = "calTable">
-                        <tr>
-                        
-                        <th id="0"><strong>Sun</strong></th>
-                        <th id="1"><strong>Mon</strong></th>
-                        <th id="2"><strong>Tue</strong></th>
-                        <th id="3"><strong>Wed</strong></th>
-                        <th id="4"><strong>Thu</strong></th>
-                        <th id="5"><strong>Fri</strong></th>
-                        <th id="6"><strong>Sat</strong></th>
-                        </tr>
-
-                        <tr id="w0"></tr>
-                        <tr id="w1"></tr>
-                        <tr id="w2"></tr>
-                        <tr id="w3"></tr>
-                        <tr id="w4"></tr>
-                        <tr id="w5"></tr>
-                        <tr id="w6"></tr>
-                        
+                    <!-- FILEPATH: /Users/nick/CSE 330S/module5-group-module5-508413-508736/public_html/Module 5 Calendar/calendar2.html -->
+                    <!-- BEGIN: ed8c6549bwf9 -->
+                    <table id="calTable">
+                        <thead>
+                            <tr>
+                                <th id="0"><strong>Sun</strong></th>
+                                <th id="1"><strong>Mon</strong></th>
+                                <th id="2"><strong>Tue</strong></th>
+                                <th id="3"><strong>Wed</strong></th>
+                                <th id="4"><strong>Thu</strong></th>
+                                <th id="5"><strong>Fri</strong></th>
+                                <th id="6"><strong>Sat</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="w0"> 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <!-- each td tag will be cleared by updateEvent upon dom generation and each row repopulated with new td elements containing the days -->
+                            </tr>
+                            <tr id="w1">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="w2">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="w3">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="w4">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="w5">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="w6">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
+    
+                    <!-- END: ed8c6549bwf9 -->
                 </div>
             </div>
 
             <div class="wrapper" id="sharedWith">
-                <header>
+                <div class="header">
                     <h2>View Calendars</h2>
                     <!-- <button id="createCaltBtn">Create Calendar</button> -->
-                </header>
+                </div>
                 <div class="calendars-list">
                     <ul id="shareList">
-                        <input type="radio" id="viewSelfOnly" name="shareOption" value="false" checked="checked">
-                        <label for="viewSelfOnly">My Calendar</label><br>
-                        <input type="radio" id="viewShared" name="shareOption" value="true">
-                        <label for="viewShared">My Calendar and Shared Calendar</label><br>
-                        <input type="radio" id="viewJustShared" name="shareOption" value="true2">
-                        <label for="viewJustShared">Shared Calendar</label><br>
+                        <li> <input type="radio" id="viewSelfOnly" name="shareOption" value="false" checked="checked">
+                        <label for="viewSelfOnly">My Calendar</label> </li>
+                        <li><input type="radio" id="viewShared" name="shareOption" value="true">
+                        <label for="viewShared">My Calendar and Shared Calendar</label></li>
+                        <li><input type="radio" id="viewJustShared" name="shareOption" value="true2">
+                        <label for="viewJustShared">Shared Calendar</label></li>
                     </ul>
                 </div>
             </div>
@@ -137,14 +181,15 @@
         <br>
 
         <div class="wrapper" id="EventDisplay">
-            <header>
+            <div class="header">
                 <h2>Events on <b id ="eventDate"></b></h2>
                 <button id="addEventBtn" disabled>Add Event</button>
-            </header>
+            </div>
             <div class="event-display">
                 <div class="list-events">
+                    <span id="eventListInnerText"></span>
                     <ul id="EventList">
-                        <span id="eventListInnerText"></span>
+                       <!-- Inner html of EventList --> 
                     </ul>
                 </div>
                 <div class="create-event">
@@ -160,7 +205,7 @@
                     <input type="text" id="create-event-description"><br>
                     <label>Shared:</label><br>
                     <input type="text" id="create-share-event"><br>
-                    <input type="hidden" name="token" id="eventCreateToken" value="" />
+                    <input type="hidden" name="token" id="eventCreateToken" value="">
                     <button id="createEventBtn">Create</button>
                 </div>
             </div>
@@ -168,13 +213,13 @@
 
         <div class="flex-container">
             <div class="wrapper" id="eventDetailDisplay">
-                <header>
-                    <h2><span id="eventDetailTitle"></span></h2>
+                <div class="header">
+                    <h2><span id="eventDetailTitle">No Event Selected</span></h2>
                     <div class="event-buttons"> 
                         <button id="editEventBtn">Edit</button>
                         <button id="deleteEventBtn">Delete</button>
                     </div>
-                </header>
+                </div>
                 <div class="event-detail-display">
                     <p>Owner: <span id="eventDetailOwner"></span></p>
                     <p>Event ID: <span id="eventDetailID"></span></p>
@@ -198,26 +243,23 @@
                     <input type="text" id="event-description"><br>
                     <label>Shared With:</label><br>
                     <input type="text" id="event-share"><br>
-                    <input type="hidden" name="token" id="eventEditToken" value="" />
+                    <input type="hidden" name="token" id="eventEditToken" value="">
                     <button id="updateBtn">Update</button>
                 </div>
             </div>
 
             <div class="wrapper" id="search-display">
-                <header>
+                <div class="header">
                     <h2>Search Events</h2>
                     <p>Query: <b id ="searchQuery"></b></p>
-                </header>
+                </div>
                 <div class="search-events">
                     <ul id="searchEventList">
-                        <span id="searchEventsInnerText"></span>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <p id="test">testing</p> -->
 </body>
 
 
