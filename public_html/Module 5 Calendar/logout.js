@@ -1,4 +1,5 @@
 
+// This file is used to log the user out of the system
 
 logOutBtn.addEventListener("click", ()=>{
   
@@ -18,9 +19,8 @@ logOutBtn.addEventListener("click", ()=>{
             cleardisplayEvents();
             updateCalendar();
             clearEventList();
-            
             hideShow();
-            
+            clearSearchEvents();
             document.getElementById("currUser").innerText="";
             isLogOut = true;
             deactivateShareOption();
@@ -40,6 +40,10 @@ logOutBtn.addEventListener("click", ()=>{
 
 },false)
 
+/*
+* This function is used to hide or show the signup and logout buttons
+*/
+
 function hideShow() {
   if (display == 1) {
       signup.style.display = "block";
@@ -53,6 +57,10 @@ function hideShow() {
       console.log("display = 1");
   }
 }
+
+/*
+* This function is used to toggle the login button
+*/
 
 function toggleLogin(){
   if (isLogOut) {
