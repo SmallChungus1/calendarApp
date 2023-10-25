@@ -14,8 +14,7 @@ $password = $json_obj['password'];
 $passwordConfirm = $json_obj['password2'];
 
 if($password != $passwordConfirm){
-    // echo "<br>Error: Entered passwords does not match<br>";
-    // echo "<form action = login.php><input type =\"submit\" value = \"Go Back\"></input></form>";
+    
     echo json_encode(array(
         "success" => false,
         "message" => "Entered Passwords Do Not Match" + $password + $passwordConfirm
@@ -24,7 +23,7 @@ if($password != $passwordConfirm){
 
     $stmt = $mysqli->prepare("select userName, userPassword from users where userName='$username'");
     if(!$stmt){
-        // printf("Query Prep Failed: %s<br>", $mysqli->error);
+        
         echo json_encode(array(
             "success" => false,
             "message" => "Query Prep Search Failed"

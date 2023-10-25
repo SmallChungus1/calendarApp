@@ -25,19 +25,7 @@ if(empty($shareWith)){
     $shareWith = null;
 }
 
-// if(isset($eventID)){
-//     echo json_encode(array(
-//                 "success" => true,
-//                 "message" => "read eventID"
-//             ));
-//             exit;
-// }else{
-//     echo json_encode(array(
-//         "success" => false,
-//         "message" => "some error"
-//     ));
-//     exit;
-// }
+
 
 if (!hash_equals($_SESSION["token"] ,$csrfToken)){
     echo json_encode(array(
