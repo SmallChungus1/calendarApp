@@ -1,3 +1,7 @@
+/*
+* This file is used to get the weather data from the Open Weather API
+*/
+
 document.addEventListener("DOMContentLoaded", weatherAPICall, false);
 
 function weatherAPICall(){

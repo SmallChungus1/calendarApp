@@ -1,3 +1,8 @@
+
+/*
+ * This function is used to get the current date
+ */ 
+
 (function(){
     Date.prototype.deltaDays=function(c){
         return new Date(this.getFullYear(),this.getMonth(),this.getDate()+c)};
@@ -14,6 +19,7 @@ function Week(c){this.sunday=c.getSunday();
     
     this.getDates=function(){for(var b=[],a=0;7>a;a++)b.push(this.sunday.deltaDays(a));return b}}
 
+// This function is used to get the current month, next month and previous month
 
 function Month(c,b){
     this.year=c;

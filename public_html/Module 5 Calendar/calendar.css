@@ -234,7 +234,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow-y: auto;
-    max-height: 200px; /* set the maximum height of the list */
+    max-height: 200px;
 }
 
 .calendars-list ul {

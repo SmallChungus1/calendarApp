@@ -1,12 +1,7 @@
-// Safe from XSS attacks; that is, all content is escaped on output (3 points)
-// Safe from SQL Injection attacks (2 points)
-// CSRF tokens are passed when adding/editing/deleting events (3 points)
-// Session cookie is HTTP-Only (3 points)
 
+// This file is used to add an event to the database
 
 const createEventBtn = document.getElementById("createEventBtn");
-
-
 
 createEventBtn.addEventListener("click", ()=>{
 const eventTitle = document.getElementById("create-event-title").value;
@@ -17,8 +12,9 @@ const eventDesc = document.getElementById("create-event-description").value;
 const username = document.getElementById("currUser").innerText;
 const sharedWith = document.getElementById("create-share-event").value;
 const eventCreateToken = document.getElementById("eventCreateToken").value;
-    console.log(sharedWith);
+
     const data = {"eventTitle": eventTitle, "eventDate":eventDate,"eventTS":eventTS,"eventTE":eventTE,"eventDesc":eventDesc, "username":username, "eventToken":eventCreateToken, "sharedWith":sharedWith};
+    // Sends the event create data to the addEvent.php file
     fetch("addEvent.php", {
         method: 'POST',
         body: JSON.stringify(data),
@@ -35,7 +31,4 @@ const eventCreateToken = document.getElementById("eventCreateToken").value;
         }
     })
     .catch(err => console.error(err));
-
-
-
 },false)

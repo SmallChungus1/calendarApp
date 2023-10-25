@@ -1,4 +1,10 @@
 
+/*
+* This is the javascript file for the calendar.html page
+*/
+
+/* Initialize Global Variables */
+
 let currentMonth = new Month(2023, 9); // October 2023
 const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November","December"];
 let loggedInStatus = false;
@@ -11,9 +17,9 @@ const viewMyCal = document.getElementById("viewSelfOnly");
 const viewMyAndShareCal = document.getElementById("viewShared");
 const viewShareCal = document.getElementById("viewJustShared");
 
-
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("DOMContentLoaded", deactivateShareOption, false);
+
 window.addEventListener("load", ()=>{
 	const data = {};
 	fetch("checkLogInStatus.php", {
@@ -31,9 +37,11 @@ window.addEventListener("load", ()=>{
 	.catch(err => console.error(err));
 }, false);
 
+/* Adding Event Listeners to all of the buttons */
 editEventBtn = document.getElementById("editEventBtn");
 editEventBtn.addEventListener("click", showEdit, false);
-editEventBtn.disabled = true;
+editEventBtn.disabled = true; //We want this to be disabled by default when the user is not logged in
+
 createEventBtn = document.getElementById("addEventBtn");
 createEventBtn.addEventListener("click", showCreate, false);
 
@@ -48,7 +56,6 @@ document.getElementById("calMonth").innerText = months[currentMonth.month];
 document.getElementById("nextMonth").addEventListener("click", function(event){
 	currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-	//handleClick();
 	console.log("The new month is "+currentMonth.month+" "+currentMonth.year);
 	document.getElementById("calYear").innerText = currentMonth.year;
 	document.getElementById("calMonth").innerText = months[currentMonth.month];
@@ -57,21 +64,18 @@ document.getElementById("nextMonth").addEventListener("click", function(event){
 document.getElementById("prevMonth").addEventListener("click", function(event){
 	currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
 	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-	//handleClick();
 	console.log("The new month is "+currentMonth.month+" "+currentMonth.year);
 	document.getElementById("calYear").innerText = currentMonth.year;
 	document.getElementById("calMonth").innerText = months[currentMonth.month];
 }, false);
 
-// This updateCalendar() function only alerts the dates in the currently specified month.  You need to write
-// it to modify the DOM (optionally using jQuery) to display the days and weeks in the current month.
+// This updateCalendar() function only alerts the dates in the currently specified month.
 function updateCalendar(){
 	clearCal();
 	let weeks = currentMonth.getWeeks();
 	
 	for(let w in weeks){
 		let days = weeks[w].getDates();
-		// console.log("weeks: "+w);
 		weekID = "w"+w;
 		
 		for(let d in days){
@@ -102,28 +106,18 @@ function updateCalendar(){
 	
 }
 
+// The handleclick function clears the events list and adds event listeners to all of the dates in the calendar
+// getEvents() retrieves the events from the database and displays them in the events list
+
 function handleClick(){
 	clearEventList();
 	for(let i = 0; i < 7; i++){
-
 		weekID = "w"+i
 		let dayOfWeek = document.getElementById(weekID);
-		//console.log(dayOfWeek);
 		let currDay = dayOfWeek.getElementsByTagName("TD");
-		//console.log(currDay.length);
 		for (let k = 0; k<currDay.length; k++){
-			//console.log(currDay[i])
-			// fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
 			fullDate = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay[k].innerText;
-			
-			//currDaytemp = currDay[k];
-			//colorCalendar();
-			//refreshColorCalendar();
-
-		
-
 			currDay[k].addEventListener("click",function(){
-				
 				if(prevSelectedDay){
 					prevSelectedDay.classList.remove("currSelectedDate");
 				}
@@ -131,160 +125,153 @@ function handleClick(){
 				prevSelectedDay = currDay[k];
 				currDay[k].classList.add("currSelectedDate");
 				getEvents();
-				
-				
-				//console.log(fullDate);
 			}, false);
 		}
 	}
 }
 
-
+/* Event Listerns for Radio Buttons*/
 viewMyCal.addEventListener("click", ()=>{
-	
-	 //currentRenderedEvents = [];
-	
 	getEvents();
 	refreshColorCalendar();
-	
 }, false);
 
 viewMyAndShareCal.addEventListener("click", ()=>{
-	
-	// currentRenderedEvents = [];
-	
 	getEvents();
 	refreshColorCalendar();
 	
 }, false);
 
  viewShareCal.addEventListener("click", ()=>{
-	
-	// currentRenderedEvents = [];
-	
 	getEvents();
 	refreshColorCalendar();
-	
 }, false);
 
+/*
+* This function is used to color the dates in the calendar that have events
+*/
 
-	function colorCalendar(currDay2, fullDate2){
-		
-		const sharedOptions = document.getElementsByName("shareOption");
-		let shareValue = null;
-		for (let i=0; i<sharedOptions.length; i++){
-			if(sharedOptions[i].checked){
-				shareValue = sharedOptions[i].value;
-				break;
-			}
+function colorCalendar(currDay2, fullDate2){
+	const sharedOptions = document.getElementsByName("shareOption");
+	let shareValue = null;
+	for (let i=0; i<sharedOptions.length; i++){
+		if(sharedOptions[i].checked){
+			shareValue = sharedOptions[i].value;
+			break;
 		}
-		const data = {'date': fullDate2, 'shareValue':shareValue};
-		fetch("eventServe.php", {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers:{'content-type': 'application/json'}
-		})
-		.then(response=>response.json())
-		.then(data => {
-			if(data.success){
-				currDay2.classList.add("activeEventDates");
-			}
-			
-		})
-		.catch(err => console.error(err))
-
 	}
-
-	function refreshColorCalendar(){
-		for(let i = 0; i < 7; i++){
-
-			let weekID2 = "w"+i
-			let dayOfWeek2 = document.getElementById(weekID2);
-			
-			let currDay2 = dayOfWeek2.getElementsByTagName("TD");
-			let fullDate2;
-			for (let k = 0; k<currDay2.length; k++){
-				 fullDate2 = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay2[k].innerText;
-				colorCalendar(currDay2[k], fullDate2);
-			}
-		}
-	}	
-
-
-	function getEvents(){
-		clearEventList();
-		const currDate = fullDate;
-		const sharedOptions = document.getElementsByName("shareOption");
-		let shareValue = null;
-		for (let i=0; i<sharedOptions.length; i++){
-			if(sharedOptions[i].checked){
-				shareValue = sharedOptions[i].value;
-				break;
-			}
+	const data = {'date': fullDate2, 'shareValue':shareValue};
+	fetch("eventServe.php", {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'content-type': 'application/json'}
+	})
+	.then(response=>response.json())
+	.then(data => {
+		if(data.success){
+			currDay2.classList.add("activeEventDates");
 		}
 		
-		const data = {'date': currDate, 'shareValue': shareValue};
-		console.log(data);
-		fetch("eventServe.php", {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers:{'content-type': 'application/json'}
-		})
-		.then(response=>response.json())
-		.then(data=> {
-			if(data.success){
-				eventsArray = data.message;
-				document.getElementById("eventDate").innerText=eventsArray[0]["eventDate"];
-				for (let i = 0; i<eventsArray.length; i++){
-					
-					const singleEvent = eventsArray[i];
-					const anEvent = document.createElement("li");
-					eventTitle = document.createTextNode(singleEvent["title"]);
-					currentRenderedEvents.push(currDaytemp);
-					console.log(currentRenderedEvents);
-					
-					anEvent.appendChild(eventTitle);
-					anEvent.addEventListener("click", () => {
+	})
+	.catch(err => console.error(err))
 
-						
-						cleardisplayEvents();
-						document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
-						document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
-						document.getElementById("eventDetailTS").innerText = singleEvent["timeStart"];
-						document.getElementById("eventDetailTE").innerText = singleEvent["timeEnd"];
-						document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
-						document.getElementById("eventDetailID").innerText = singleEvent["eventID"];
-						document.getElementById("eventSharedWith").innerText = singleEvent["sharedWith"];
-						document.getElementById("eventDetailOwner").innerText = singleEvent["owner"];
+}
 
-						document.getElementById("event-title").value = singleEvent["title"];
-						document.getElementById("event-id").value = singleEvent["eventID"];
-						document.getElementById("event-date").value = singleEvent["eventDate"];
-						document.getElementById("event-start").value = singleEvent["timeStart"];
-						document.getElementById("event-end").value = singleEvent["timeEnd"];
-						document.getElementById("event-description").value = singleEvent["description"];
-						document.getElementById("event-share").value = singleEvent["sharedWith"];
-						toggleEditBtn();
-					}, false)
-					document.getElementById("EventList").appendChild(anEvent);
-				}
+/*
+* This function is used to refresh the color of the calendar when the user changes the radio button
+*/
 
-				
-				
+function refreshColorCalendar(){
+	for(let i = 0; i < 7; i++){
 
-				
-			}else{
-				alert(`Data Retrival not successful ${data.message}`);
-				document.getElementById("eventDate").innerText=fullDate;
-				document.getElementById("eventListInnerText").innerText="No Events Yet";
-			}
-		}  
-			)
-		.catch(err => console.error(err))
-
-
+		let weekID2 = "w"+i
+		let dayOfWeek2 = document.getElementById(weekID2);
+		
+		let currDay2 = dayOfWeek2.getElementsByTagName("TD");
+		let fullDate2;
+		for (let k = 0; k<currDay2.length; k++){
+				fullDate2 = currentMonth.year+"-"+(currentMonth.month+1)+"-"+currDay2[k].innerText;
+			colorCalendar(currDay2[k], fullDate2);
+		}
 	}
-//}
+}	
+
+/*
+* This function is used to retrieve the events from the database and display them in the events list
+* the function makes a request to the eventServe.php file
+*/
+
+function getEvents(){
+	clearEventList();
+	const currDate = fullDate;
+	const sharedOptions = document.getElementsByName("shareOption");
+	let shareValue = null;
+	for (let i=0; i<sharedOptions.length; i++){
+		if(sharedOptions[i].checked){
+			shareValue = sharedOptions[i].value;
+			break;
+		}
+	}
+	
+	const data = {'date': currDate, 'shareValue': shareValue};
+	console.log(data);
+	fetch("eventServe.php", {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'content-type': 'application/json'}
+	})
+	.then(response=>response.json())
+	.then(data=> {
+		if(data.success){
+			eventsArray = data.message;
+			document.getElementById("eventDate").innerText=eventsArray[0]["eventDate"];
+			for (let i = 0; i<eventsArray.length; i++){
+				
+				const singleEvent = eventsArray[i];
+				const anEvent = document.createElement("li");
+				eventTitle = document.createTextNode(singleEvent["title"]);
+				currentRenderedEvents.push(currDaytemp);
+				
+				anEvent.appendChild(eventTitle);
+				anEvent.addEventListener("click", () => {
+
+					cleardisplayEvents();
+					document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
+					document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
+					document.getElementById("eventDetailTS").innerText = singleEvent["timeStart"];
+					document.getElementById("eventDetailTE").innerText = singleEvent["timeEnd"];
+					document.getElementById("eventDetailDesc").innerText = singleEvent["description"];
+					document.getElementById("eventDetailID").innerText = singleEvent["eventID"];
+					document.getElementById("eventSharedWith").innerText = singleEvent["sharedWith"];
+					document.getElementById("eventDetailOwner").innerText = singleEvent["owner"];
+
+					document.getElementById("event-title").value = singleEvent["title"];
+					document.getElementById("event-id").value = singleEvent["eventID"];
+					document.getElementById("event-date").value = singleEvent["eventDate"];
+					document.getElementById("event-start").value = singleEvent["timeStart"];
+					document.getElementById("event-end").value = singleEvent["timeEnd"];
+					document.getElementById("event-description").value = singleEvent["description"];
+					document.getElementById("event-share").value = singleEvent["sharedWith"];
+					toggleEditBtn();
+				}, false)
+				document.getElementById("EventList").appendChild(anEvent);
+			}
+		}else{
+			alert(`Data Retrival not successful ${data.message}`);
+			document.getElementById("eventDate").innerText=fullDate;
+			document.getElementById("eventListInnerText").innerText="No Events Yet";
+		}
+	}  
+		)
+	.catch(err => console.error(err))
+
+
+}
+
+/*
+* This function is toggle the EdtBtn
+*/
+
 function toggleEditBtn(){
 	if (document.getElementById("currUser").innerText !== document.getElementById("eventDetailOwner").innerText ){
         
@@ -297,6 +284,10 @@ function toggleEditBtn(){
     }
 }
 
+/*
+* This function is used to activate the share option
+*/
+
 function activateShareOption(){
 	let shareButtons = document.getElementsByName("shareOption");
 	for (let i = 0; i < shareButtons.length; i++){
@@ -304,12 +295,21 @@ function activateShareOption(){
 	}
 }
 
+/*
+* This function is used to deactivate the share option
+*/
+
 function deactivateShareOption(){
 	let shareButtons = document.getElementsByName("shareOption");
 	for (let i = 0; i < shareButtons.length; i++){
 		shareButtons[i].disabled = true;
 	}
 }
+
+/*
+* This function is used to pull the events from the database based on the user's search query
+*/
+
 function searchEvents(){
 	clearSearchEvents();
 	let searchData = document.getElementById("search-input").value;
@@ -367,8 +367,11 @@ function searchEvents(){
 	}  
 		)
 	.catch(err => console.error(err))
-
 }
+
+/*
+* This function is used to clear the events on the search list
+*/
 
 function clearSearchEvents(){
 	const searchEventList = document.getElementById("searchEventList");
@@ -377,6 +380,11 @@ function clearSearchEvents(){
 		aChild.remove();
 	})
 }
+
+
+/*
+* This function is used to clear the event details on the event detail display and form
+*/
 
 function cleardisplayEvents(){
 	document.getElementById("eventDetailTitle").innerText="";
@@ -396,6 +404,10 @@ function cleardisplayEvents(){
 	document.getElementById("event-share").value = "";
 }
 
+/*
+* This function is used to show the edit event form when the user clicks on the edit event button
+*/
+
 function showEdit() {
 	const eventDetailDisplay = document.getElementsByClassName("event-detail-display")[0];
 	const eventDetailDisplayForm = document.getElementsByClassName("event-detail-display-form")[0];
@@ -413,6 +425,10 @@ function showEdit() {
 	
 }
 
+/*
+* This function is used to show the create event form when the user clicks on the create event button
+*/
+
 function showCreate() {
 	const listEvents = document.getElementsByClassName("list-events")[0];
 	const createEvent = document.getElementsByClassName("create-event")[0];
@@ -425,6 +441,10 @@ function showCreate() {
 		createEvent.style.display = "block";
 	}
 }
+
+/*
+* This function is used to show the create calendar form when the user clicks on the create calendar button
+*/
 
 function showCreateCalendar(){
 	const listEvents = document.getElementsByClassName("list-events")[0];
@@ -440,16 +460,22 @@ function showCreateCalendar(){
 	
 }
 
-function clearEventList(){
+/*
+* This function is used to clear the events on the event list
+*/
 
+function clearEventList(){
 	const eventList = document.getElementById("EventList");
 	document.getElementById("eventListInnerText").innerText="";
 	let currEvent = Array.from(eventList.getElementsByTagName("LI"));
 	currEvent.forEach(aChild => {
 		aChild.remove();
 	})
-
 }
+
+/*
+* This function clears the calendar
+*/
 
 function clearCal(){
 	for(let i = 0; i < 7; i++){
@@ -462,7 +488,7 @@ function clearCal(){
 	}
 }
 
-//Don't touch this: weather functions
+//Don't touch this: weather functions - This code was povided to use by the professor
 (function(){
     Date.prototype.deltaDays=function(c){
         return new Date(this.getFullYear(),this.getMonth(),this.getDate()+c)};
@@ -488,11 +514,9 @@ function Month(c,b){this.year=c;
     this.getWeeks=function(){var a=this.getDateObject(1),b=this.nextMonth().getDateObject(0),c=[],a=new Week(a);
         for(c.push(a);!a.contains(b);)a=a.nextWeek(),c.push(a);return c}};
 
-//Don't touch above: weather functions
+//Don't touch above: weather functions - This code was povided to use by the professor
 
-
-
-// Navbar
+// This is code that adds a background to the nabar when the user scrolls down
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {

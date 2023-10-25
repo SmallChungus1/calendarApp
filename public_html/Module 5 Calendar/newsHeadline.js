@@ -1,3 +1,7 @@
+/*
+*  This file is used to get the news headlines from the news API
+*/
+
 let newsAPIURL = 'http://api.mediastack.com/v1/news?access_key=72e432e266e0da8013602f23fc6f3a4f&limit=10'
 
 fetch(newsAPIURL, {

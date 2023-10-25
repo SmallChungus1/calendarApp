@@ -13,9 +13,9 @@ Login Details:
 1. user: Bob | Password: 123
 2. user: John | Password: 12
 3. user: Someguy1 | Password: 123
+4. user: wustl | password: wustl
 
 Notes: 
-
 
 Creative portion: 
 

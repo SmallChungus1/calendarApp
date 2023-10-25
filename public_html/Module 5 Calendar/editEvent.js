@@ -1,6 +1,8 @@
-const eventUpdateBtn = document.getElementById("updateBtn");
-// const editBtn = document.getElementById("editEventBtn");
+/* 
+* This file is used to edit an event in the database 
+*/
 
+const eventUpdateBtn = document.getElementById("updateBtn");
 
 eventUpdateBtn.addEventListener("click",()=>{
 
@@ -14,16 +16,8 @@ const username = document.getElementById("currUser").innerText;
 const eventEditToken = document.getElementById("eventEditToken").value;
 const shareWith = document.getElementById("event-share").value;
 
-
-// console.log(eventTitle);
-// console.log(eventID);
-// console.log(eventDate);
-// console.log(eventTimeStart);
-// console.log(eventEditToken);
-console.log(shareWith);
-
+// Sends the event edit data to the editEvent.php file
 const data = {"eventTitle": eventTitle, "eventID": eventID, "eventDate": eventDate, "eventTS": eventTimeStart, "eventTE": eventTimeEnd, "eventDesc":eventDescription, "username":username, "eventToken": eventEditToken, "shareWith":shareWith};
-console.log(data);
 fetch("editEvent.php", {
     method: 'POST',
     body: JSON.stringify(data),

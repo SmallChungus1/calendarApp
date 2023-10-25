@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +14,16 @@
     <script src="eventDel.js" defer></script>
     <script src="openWeatherAPI.js" defer></script>
     <script src="newsHeadline.js" defer></script>
-    <link rel="shortcut icon" href="#"> 
+    <link rel="shortcut icon" href="#">
     <!-- citation for line of code (line 16) above: https://stackoverflow.com/questions/31075893/how-to-fix-favicon-ico-error-failed-to-load-resource-neterr-empty-response -->
 </head>
+
 <body>
+    <!-- This is the navbar -->
     <div class="navbar">
         <nav>
             <div class="logo">
-                <a >CALENDAR</a>
+                <a>CALENDAR</a>
             </div>
             <div class="nav-wrapper">
                 <ul>
@@ -32,6 +34,8 @@
             </div>
         </nav>
     </div>
+
+    <!-- This is the top section which includes the weather, Login Information, and News -->
     <div class="top-section">
         <div class="wrapper" id="weatherDiv">
             <div class="header">
@@ -39,7 +43,8 @@
                     <div class="weather-info">
                         <div class="city-name"><span id="cityName"></span></div>
                         <div class="temperature"><span id="cityTemp"></span> °C</div>
-                        <div class="weather-description"><span id="cityWeather"></span>, <span id="cityWeatherDesc"></span></div>
+                        <div class="weather-description"><span id="cityWeather"></span>, <span
+                                id="cityWeatherDesc"></span></div>
                     </div>
                     <div class="activity-recommendation">
                         <div class="activity-label">Recommended Activity:</div>
@@ -55,14 +60,14 @@
                     <h2 id="welcomeMsg">Welcome <b id="currUser"></b></h2>
                 </div>
 
-                <div class="container" id ="calLogin">
+                <div class="container" id="calLogin">
                     <h3>Log In:</h3>
                     <input type="text" id="username" placeholder="Username" required><br>
                     <input type="password" id="password" placeholder="Password" required><br><br>
                     <button id="loginBtn">Log In</button>
                 </div>
 
-                <div class="container" id ="calSignUp">
+                <div class="container" id="calSignUp">
                     <h3>Sign Up:</h3>
                     <input type="text" id="usernameReg" placeholder="Username" required><br>
                     <input type="password" id="passwordReg" placeholder="Password" required><br>
@@ -81,16 +86,17 @@
                 <div class="news-description"><span id="newsDesc"></span></div>
             </div>
         </div>
-    </div>
+    </div> 
 
+    <!-- This is the main section where the calendar, events, and event info is located in a flexbox -->
     <div class="main-section">
         <div class="flex-container">
             <div class="wrapper" id="calendarBody">
                 <div class="header">
-                    <p class="current-month-year"> <span id="calMonth"></span>  <span id="calYear"></span></p>
-                    <div class="icons_month"> 
-                        <button id ="prevMonth">&lt;</button>
-                        <button id ="nextMonth">&gt;</button>
+                    <p class="current-month-year"> <span id="calMonth"></span> <span id="calYear"></span></p>
+                    <div class="icons_month">
+                        <button id="prevMonth">&lt;</button>
+                        <button id="nextMonth">&gt;</button>
                     </div>
                 </div>
 
@@ -108,7 +114,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr id="w0"> 
+                            <tr id="w0">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -183,11 +189,11 @@
                 <div class="calendars-list">
                     <ul id="shareList">
                         <li> <input type="radio" id="viewSelfOnly" name="shareOption" value="false" checked="checked">
-                        <label for="viewSelfOnly">My Calendar</label> </li>
+                            <label for="viewSelfOnly">My Calendar</label> </li>
                         <li><input type="radio" id="viewShared" name="shareOption" value="true">
-                        <label for="viewShared">My Calendar and Shared Calendar</label></li>
+                            <label for="viewShared">My Calendar and Shared Calendar</label></li>
                         <li><input type="radio" id="viewJustShared" name="shareOption" value="true2">
-                        <label for="viewJustShared">Shared Calendar</label></li>
+                            <label for="viewJustShared">Shared Calendar</label></li>
                     </ul>
                 </div>
             </div>
@@ -196,14 +202,14 @@
 
         <div class="wrapper" id="EventDisplay">
             <div class="header">
-                <h2>Events on <b id ="eventDate"></b></h2>
+                <h2>Events on <b id="eventDate"></b></h2>
                 <button id="addEventBtn" disabled>Add Event</button>
             </div>
             <div class="event-display">
                 <div class="list-events">
                     <span id="eventListInnerText"></span>
                     <ul id="EventList">
-                       <!-- Inner html of EventList --> 
+                        <!-- Inner html of EventList -->
                     </ul>
                 </div>
                 <div class="create-event">
@@ -225,11 +231,13 @@
             </div>
         </div>
 
+        <!-- Flexbox Coloumn to hold the event info and the results from the search bar -->
+
         <div class="flex-container">
             <div class="wrapper" id="eventDetailDisplay">
                 <div class="header">
                     <h2><span id="eventDetailTitle">No Event Selected</span></h2>
-                    <div class="event-buttons"> 
+                    <div class="event-buttons">
                         <button id="editEventBtn">Edit</button>
                         <button id="deleteEventBtn">Delete</button>
                     </div>
@@ -237,11 +245,11 @@
                 <div class="event-detail-display">
                     <p>Owner: <span id="eventDetailOwner"></span></p>
                     <p>Event ID: <span id="eventDetailID"></span></p>
-                    <p>Date: <span id ="eventDetailDate"></span></p>
-                    <p>Time start: <span id ="eventDetailTS"></span></p>
-                    <p>Time end: <span id ="eventDetailTE"></span></p>
-                    <p>Description <span id ="eventDetailDesc"></span></p>
-                    <p>Shared With: <span id ="eventSharedWith"></span></p>
+                    <p>Date: <span id="eventDetailDate"></span></p>
+                    <p>Time start: <span id="eventDetailTS"></span></p>
+                    <p>Time end: <span id="eventDetailTE"></span></p>
+                    <p>Description <span id="eventDetailDesc"></span></p>
+                    <p>Shared With: <span id="eventSharedWith"></span></p>
                 </div>
                 <div class="event-detail-display-form">
                     <label>Event Title:</label> <br>
@@ -265,7 +273,7 @@
             <div class="wrapper" id="search-display">
                 <div class="header">
                     <h2>Search Events</h2>
-                    <p>Query: <b id ="searchQuery"></b></p>
+                    <p>Query: <b id="searchQuery"></b></p>
                 </div>
                 <div class="search-events">
                     <ul id="searchEventList">
@@ -275,6 +283,5 @@
         </div>
     </div>
 </body>
-
 
 </html>
