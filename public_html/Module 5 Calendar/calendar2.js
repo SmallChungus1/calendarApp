@@ -16,7 +16,19 @@ const viewShareCal = document.getElementById("viewJustShared");
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("DOMContentLoaded", deactivateShareOption, false);
-
+window.addEventListener("load", ()=>{
+	const data = {};
+	fetch("checkLogInStatus.php", {
+		method: "POST",
+		body: JSON.stringify(data),
+        headers:{'content-type': 'application/json'}
+	})
+	.then(response => response.json())
+	.then(data =>{
+		alert(data.message);
+	})
+	.catch(err => console.error(err));
+}, false);
 
 editEventBtn = document.getElementById("editEventBtn");
 editEventBtn.addEventListener("click", showEdit, false);
