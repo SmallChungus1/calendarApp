@@ -12,8 +12,6 @@ const viewMyAndShareCal = document.getElementById("viewShared");
 const viewShareCal = document.getElementById("viewJustShared");
 
 
-
-
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
 document.addEventListener("DOMContentLoaded", deactivateShareOption, false);
 window.addEventListener("load", ()=>{
@@ -26,6 +24,9 @@ window.addEventListener("load", ()=>{
 	.then(response => response.json())
 	.then(data =>{
 		alert(data.message);
+		if(data.success){
+			loggedInStatus = true;
+		}
 	})
 	.catch(err => console.error(err));
 }, false);
@@ -140,24 +141,27 @@ function handleClick(){
 
 
 viewMyCal.addEventListener("click", ()=>{
-	console.log("clicked");
-	// currentRenderedEvents = [];
+	
+	 //currentRenderedEvents = [];
+	
 	getEvents();
 	refreshColorCalendar();
 	
 }, false);
 
 viewMyAndShareCal.addEventListener("click", ()=>{
-	console.log("clicked");
+	
 	// currentRenderedEvents = [];
+	
 	getEvents();
 	refreshColorCalendar();
 	
 }, false);
 
  viewShareCal.addEventListener("click", ()=>{
-	console.log("clicked");
+	
 	// currentRenderedEvents = [];
+	
 	getEvents();
 	refreshColorCalendar();
 	
@@ -165,8 +169,15 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 
 
 	function colorCalendar(currDay2, fullDate2){
-
-		const shareValue = 'false';
+		
+		const sharedOptions = document.getElementsByName("shareOption");
+		let shareValue = null;
+		for (let i=0; i<sharedOptions.length; i++){
+			if(sharedOptions[i].checked){
+				shareValue = sharedOptions[i].value;
+				break;
+			}
+		}
 		const data = {'date': fullDate2, 'shareValue':shareValue};
 		fetch("eventServe.php", {
 			method: 'POST',
@@ -399,7 +410,7 @@ function showEdit() {
 		eventDetailDisplayForm.style.display = "block";
 		deleteEventBtn.style.display = "block";
 	}
-	//getEvents();
+	
 }
 
 function showCreate() {
@@ -413,7 +424,6 @@ function showCreate() {
 		listEvents.style.display = "none";
 		createEvent.style.display = "block";
 	}
-	//getEvents(); //Not sure if we need this. It will throw an error if you click on the button with this function call because getEvents makes a call to the sql database
 }
 
 function showCreateCalendar(){
