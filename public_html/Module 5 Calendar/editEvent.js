@@ -28,6 +28,9 @@ fetch("editEvent.php", {
 .then(response =>response.json())
 .then(data=>{
     alert(data.message);
+    if(data.success){
+        alert("Click on the event again in the Events List to view your event with the new changes");
+    }
     getEvents();
    
 })

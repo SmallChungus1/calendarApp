@@ -13,6 +13,7 @@
     <script src="editEvent.js" defer></script>
     <script src="eventDel.js" defer></script>
     <script src="openWeatherAPI.js" defer></script>
+    <script src="newsHeadline.js" defer></script>
     <link rel="shortcut icon" href="#"> 
     <!-- citation for line of code (line 16) above: https://stackoverflow.com/questions/31075893/how-to-fix-favicon-ico-error-failed-to-load-resource-neterr-empty-response -->
 </head>
@@ -31,10 +32,20 @@
             </div>
         </nav>
     </div>
-    <div class="main-section">
+    <div class="top-section">
         <div class="wrapper" id="weatherDiv">
             <div class="header">
-                <p> <b>City:</b> <span id="cityName"></span> | <b>Temperature:</b> <span id="cityTemp"></span> °C | <b>Weather:</b> <span id="cityWeather"></span>, <span id="cityWeatherDesc"></span> | <b>Recommendation:</b> <span id="recommendedActivity"></span></p>
+                <div class="weather-widget">
+                    <div class="weather-info">
+                        <div class="city-name"><span id="cityName"></span></div>
+                        <div class="temperature"><span id="cityTemp"></span> °C</div>
+                        <div class="weather-description"><span id="cityWeather"></span>, <span id="cityWeatherDesc"></span></div>
+                    </div>
+                    <div class="activity-recommendation">
+                        <div class="activity-label">Recommended Activity:</div>
+                        <div class="activity-name"><span id="recommendedActivity"></span></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -47,7 +58,7 @@
                 <div class="container" id ="calLogin">
                     <h3>Log In:</h3>
                     <input type="text" id="username" placeholder="Username" required><br>
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="password" placeholder="Password" required><br><br>
                     <button id="loginBtn">Log In</button>
                 </div>
 
@@ -55,9 +66,19 @@
                     <h3>Sign Up:</h3>
                     <input type="text" id="usernameReg" placeholder="Username" required><br>
                     <input type="password" id="passwordReg" placeholder="Password" required><br>
-                    <input type="password" id="passwordConfirm" placeholder="Confirm Password" required>
+                    <input type="password" id="passwordConfirm" placeholder="Confirm Password" required><br><br>
                     <button id="signUpBtn">SignUp</button>
                 </div>
+            </div>
+        </div>
+        <div class="news-wrapper" id="newsDiv">
+            <div class="header">
+                <h2>News</h2>
+            </div>
+            <div class="news-source">From <span id="newsSource"></span></div>
+            <div class="news-content">
+                <div class="news-title"><span id="newsTitle"></span></div>
+                <div class="news-description"><span id="newsDesc"></span></div>
             </div>
         </div>
     </div>
@@ -69,7 +90,6 @@
                     <p class="current-month-year"> <span id="calMonth"></span>  <span id="calYear"></span></p>
                     <div class="icons_month"> 
                         <button id ="prevMonth">&lt;</button>
-                        
                         <button id ="nextMonth">&gt;</button>
                     </div>
                 </div>
@@ -156,15 +176,12 @@
                             </tr>
                         </tbody>
                     </table>
-    
-                    <!-- END: ed8c6549bwf9 -->
                 </div>
             </div>
 
             <div class="wrapper" id="sharedWith">
                 <div class="header">
                     <h2>View Calendars</h2>
-                    <!-- <button id="createCaltBtn">Create Calendar</button> -->
                 </div>
                 <div class="calendars-list">
                     <ul id="shareList">

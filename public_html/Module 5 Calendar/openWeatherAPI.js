@@ -24,7 +24,7 @@ fetch("http://api.openweathermap.org/data/2.5/weather?appid=83ace4c88bc338ad1fd4
 
     let recommendation;
 if (temperature > 10 && !weatherData.includes("rain") ){
-     recommendation = "Good weather! add outdoor activites to your calendar 😹😺";
+     recommendation = "Good weather! add outdoor activites to your calendar 😺";
     }else if (temperature > 30){
          recommendation = "It is too hot, plan your activites indoor 😾";
     }else if (temperature <= 10){
