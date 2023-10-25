@@ -17,16 +17,18 @@ Login Details:
 
 Notes: 
 
+Please discount the files in the Unused Files folder. I plan to reuse those files for an independent project later on.
+
 Creative portion: 
 
-1. OpenweatherMap API: Made fetch calls to OpenweatherMap API to display the current temperature and weather of St. Louis and dispalyed it on the calendar. Based on the weather and temperature, it will make a suggestion to user on how they can plan their day.
+1. OpenweatherMap API: Made fetch calls to OpenweatherMap API to display the current temperature and weather of St. Louis and displayed it on the calendar. Based on the weather and temperature, it will make a suggestion to the user on how they can plan their day.
 
 Link to openweathermap API: https://openweathermap.org/
 
-2. MediaStack API: Made fetch calls to the MediaStack API to get and display news headline onto the calendar. Note: Due to the free tier plan, we are getting older news from this summer and have to limit api response to just 10 news per call. 
+2. MediaStack API: Made fetch calls to the MediaStack API to get and display news headlines onto the calendar. Note: Due to the free tier plan, we are getting older news from this summer and have to limit api response to just 10 news per call. 
 
 Link to MediaStack API: https://mediastack.com/product
 
-3. Sharing Events: Users can share their event with an additional user upon event creation or while editing the event. The shared with user cannot edit or delete the event.
+3. Sharing Events: Users can share their event with an additional user upon event creation or while editing the event. The sharedWith user cannot edit or delete the event.
 
-4. Search Bar: Implemented a search bar on the top of our page (next to logout button once logged in) to search for owned events and events shared with you based on title and description. The searched events will be displayed in the search events list.
+4. Search Bar: Implemented a search bar on the top of our page (next to the logout button on the navbar once logged in) to search for owned events and events shared with you based on title and description. The searched events will be displayed in the search events list.

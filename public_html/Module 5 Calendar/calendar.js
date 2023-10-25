@@ -253,10 +253,10 @@ function getEvents(){
 				const anEvent = document.createElement("li");
 				eventTitle = document.createTextNode(singleEvent["title"]);
 				currentRenderedEvents.push(currDaytemp);
-				
+
 				anEvent.appendChild(eventTitle);
 				anEvent.addEventListener("click", () => {
-					
+
 					cleardisplayEvents();
 					document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
 					document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
@@ -336,7 +336,6 @@ function searchEvents(){
 	clearSearchEvents();
 	let searchData = document.getElementById("search-input").value;
 	const data = {'searchData': searchData};
-	console.log(data);
 	fetch("eventSearch.php", {
 		method: 'POST',
 		body: JSON.stringify(data),
