@@ -265,10 +265,12 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 function toggleEditBtn(){
 	if (document.getElementById("currUser").innerText !== document.getElementById("eventDetailOwner").innerText ){
         
-        document.getElementById("editEventBtn").disabled = true;
+        document.getElementById("deleteEventBtn").disabled = true;
+		document.getElementById("updateBtn").disabled = true;
     }else{
        
-        document.getElementById("editEventBtn").disabled = false;
+        document.getElementById("updateBtn").disabled = false;
+		document.getElementById("deleteEventBtn").disabled = false;
     }
 }
 
