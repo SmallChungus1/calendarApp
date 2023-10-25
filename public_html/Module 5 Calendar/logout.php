@@ -27,7 +27,7 @@ unset($_SESSION['token']);
 if(session_destroy()){
     echo json_encode(array(
         "success" => true,
-         "message" => $_SESSION['currUser']
+         "message" => "You have been successfully logged out from PHP End"
     ));
     exit;
 }

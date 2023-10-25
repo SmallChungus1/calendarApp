@@ -30,7 +30,6 @@ logOutBtn.addEventListener("click", ()=>{
             searchBtn.style.display = "none";
             addEventBtn.disabled = true;
             editEventBtn.disabled = true;
-          //  toggleLogin();
         }else{
             alert(`Log out not successful ${data.message}`);
         }
