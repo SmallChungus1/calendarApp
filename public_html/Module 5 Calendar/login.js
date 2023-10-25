@@ -36,6 +36,7 @@ function loginUser(event){
             updateCalendar();
             //handleClick();
             refreshColorCalendar();
+            activateShareOption();
             document.getElementById("eventCreateToken").value=loginData.message[1]; //the generated token
             document.getElementById("eventEditToken").value=loginData.message[1];
             logOutBtn.style.display = "block";
@@ -43,9 +44,6 @@ function loginUser(event){
             searchBtn.style.display = "block";
             addEventBtn.disabled = false;
             editEventBtn.disabled = false;
-          //  toggleLogin();
-            // document.getElementById("calLogin").remove();
-            // document.getElementById("calSignUp").remove();
         }else{
             alert(`Login not successful ${loginData.message}`);
         }

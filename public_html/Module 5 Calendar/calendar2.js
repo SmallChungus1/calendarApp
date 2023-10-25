@@ -12,10 +12,11 @@ const viewMyAndShareCal = document.getElementById("viewShared");
 const viewShareCal = document.getElementById("viewJustShared");
 
 
-// Change the month when the "next" button is pressed
+
 
 document.addEventListener("DOMContentLoaded", updateCalendar, false);
-//document.addEventListener("DOMContentLoaded", handleClick, false);
+document.addEventListener("DOMContentLoaded", deactivateShareOption, false);
+
 
 editEventBtn = document.getElementById("editEventBtn");
 editEventBtn.addEventListener("click", showEdit, false);
@@ -221,6 +222,8 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 					
 					anEvent.appendChild(eventTitle);
 					anEvent.addEventListener("click", () => {
+
+						
 						cleardisplayEvents();
 						document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
 						document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
@@ -238,9 +241,12 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 						document.getElementById("event-end").value = singleEvent["timeEnd"];
 						document.getElementById("event-description").value = singleEvent["description"];
 						document.getElementById("event-share").value = singleEvent["sharedWith"];
+						toggleEditBtn();
 					}, false)
 					document.getElementById("EventList").appendChild(anEvent);
 				}
+
+				
 				
 
 				
@@ -256,7 +262,29 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 
 	}
 //}
+function toggleEditBtn(){
+	if (document.getElementById("currUser").innerText !== document.getElementById("eventDetailOwner").innerText ){
+        
+        document.getElementById("editEventBtn").disabled = true;
+    }else{
+       
+        document.getElementById("editEventBtn").disabled = false;
+    }
+}
 
+function activateShareOption(){
+	let shareButtons = document.getElementsByName("shareOption");
+	for (let i = 0; i < shareButtons.length; i++){
+		shareButtons[i].disabled = false;
+	}
+}
+
+function deactivateShareOption(){
+	let shareButtons = document.getElementsByName("shareOption");
+	for (let i = 0; i < shareButtons.length; i++){
+		shareButtons[i].disabled = true;
+	}
+}
 function searchEvents(){
 	clearSearchEvents();
 	let searchData = document.getElementById("search-input").value;

@@ -1,4 +1,6 @@
 const eventUpdateBtn = document.getElementById("updateBtn");
+// const editBtn = document.getElementById("editEventBtn");
+
 
 eventUpdateBtn.addEventListener("click",()=>{
 
@@ -11,6 +13,8 @@ const eventDescription = document.getElementById("event-description").value;
 const username = document.getElementById("currUser").innerText;
 const eventEditToken = document.getElementById("eventEditToken").value;
 const shareWith = document.getElementById("event-share").value;
+
+
 // console.log(eventTitle);
 // console.log(eventID);
 // console.log(eventDate);

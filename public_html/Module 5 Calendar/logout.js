@@ -23,7 +23,7 @@ logOutBtn.addEventListener("click", ()=>{
             
             document.getElementById("currUser").innerText="";
             isLogOut = true;
-
+            deactivateShareOption();
             loggedInStatus = false;
             logOutBtn.style.display = "none";
             searchInput.style.display = "none";
