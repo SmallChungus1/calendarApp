@@ -29,9 +29,24 @@ window.addEventListener("load", ()=>{
 	})
 	.then(response => response.json())
 	.then(data =>{
-		alert(data.message);
-		if(data.success){
+		if(data.success){ //our global variables in js gets reset upon refresh if user is logged in. We are resetting these varibles if the user is still logged in upon refresh
+			alert("You are still logged in. Please reselect the share options under View Calendar to refresh the calendar");
+			console.log(data.message);
 			loggedInStatus = true;
+			document.getElementById("currUser").innerText = data.message[0];
+			logOutBtn.style.display = "block";
+            searchInput.style.display = "block";
+            searchBtn.style.display = "block";
+            addEventBtn.disabled = false;
+            editEventBtn.disabled = false;
+			document.getElementById("eventEditToken").value = data.message[1];
+			document.getElementById("eventCreateToken").value = data.message[1];
+			activateShareOption();
+
+			hideShow();
+
+		}else{
+			alert(data.message);
 		}
 	})
 	.catch(err => console.error(err));
@@ -132,17 +147,20 @@ function handleClick(){
 
 /* Event Listerns for Radio Buttons*/
 viewMyCal.addEventListener("click", ()=>{
+	updateCalendar();
 	getEvents();
 	refreshColorCalendar();
 }, false);
 
 viewMyAndShareCal.addEventListener("click", ()=>{
+	updateCalendar();
 	getEvents();
 	refreshColorCalendar();
 	
 }, false);
 
  viewShareCal.addEventListener("click", ()=>{
+	updateCalendar();
 	getEvents();
 	refreshColorCalendar();
 }, false);
@@ -150,6 +168,10 @@ viewMyAndShareCal.addEventListener("click", ()=>{
 /*
 * This function is used to color the dates in the calendar that have events
 */
+
+function decolorCalendar(){
+
+}
 
 function colorCalendar(currDay2, fullDate2){
 	const sharedOptions = document.getElementsByName("shareOption");
@@ -234,7 +256,7 @@ function getEvents(){
 				
 				anEvent.appendChild(eventTitle);
 				anEvent.addEventListener("click", () => {
-
+					
 					cleardisplayEvents();
 					document.getElementById("eventDetailTitle").innerText = singleEvent["title"];
 					document.getElementById("eventDetailDate").innerText = singleEvent["eventDate"];
