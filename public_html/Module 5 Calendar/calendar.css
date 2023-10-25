@@ -226,13 +226,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
+    align-items: center;
     gap: 10px; /* add the desired spacing between items */
 }
 
 .calendars-list {
     justify-content: center;
-    align-items: left;
+    align-items: center;
     overflow-y: auto;
     max-height: 200px; /* set the maximum height of the list */
 }

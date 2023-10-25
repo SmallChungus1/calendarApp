@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Calendar</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="calendar.js" defer></script>
+    </head>
+    <body onload="renderCalendar(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())">
+        <div class="navbar">
+            <nav>
+                <div class="logo">
+                    <a href="calendar.html">CALENDAR</a>
+                </div>
+                <div class="nav-wrapper">
+                    <ul>
+                        <li><a href="calendar.html">Home</a></li>
+                        <li><a href="calendar.html">How to Use</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="login.html">Log In</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="flex-container">
+            <div class="coloumn-container">
+                <!-- FILEPATH: /Users/nick/CSE 330S/module5-group-module5-508413-508736/public_html/Module 5 Calendar/calendar.html -->
+                <!-- BEGIN: ed8c6549bwf9 -->
+                <div class="wrapper">
+                    <header>
+                        <p class="current-date">October 2023</p>
+                        <div class="icons_month"> 
+                            <span id="prev_month">&lt;</span> 
+                            <span id="next_month">&gt;</span> 
+                        </div>
+                    </header>
+                    <div class="calendar">
+                        <ul class="weeks">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="days">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li>10</li>
+                            <li>11</li>
+                            <li>12</li>
+                            <li>13</li>
+                            <li>14</li>
+                            <li>15</li>
+                            <li>16</li>
+                            <li>17</li>
+                            <li>18</li>
+                            <li>19</li>
+                            <li>20</li>
+                            <li>21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+                            <li>30</li>
+                            <li>31</li>
+                            <li class="inactive">1</li>
+                            <li class="inactive">2</li>
+                            <li class="inactive">3</li>
+                            <li class="inactive">4</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <header>
+                        <p class="calendar-header">Your Calendars</p>
+                    </header>
+                    <div class="calendars-available">
+                        <ul class="calendars-list">
+                            <li>
+                                <input type="checkbox" id="current" name="current" value="current" checked>
+                                <label for="calendar1">Current</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="calendar2" name="calendar2" value="calendar2">
+                                <label for="calendar2">Calendar 2</label>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="wrapper-main">
+                <header>
+                    <p class="current-day">Tuesday October 2023</p>
+                    <div class="icons_day"> 
+                        <span id="prev_day">&lt;</span> 
+                        <span id="next_day">&gt;</span> 
+                    </div>
+                </header>
+                <div class="calendar-events">
+                    <ul class="time-lines">
+                        <li class="time-line">12:00 AM</li>
+                        <li class="event">TEST</li>
+                        <li class="time-line">12:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">1:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">1:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">2:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">2:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">3:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">3:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">4:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">4:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">5:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">5:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">6:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">6:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">7:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">7:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">8:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">8:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">9:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">9:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">10:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">10:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">11:00 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">11:30 AM</li>
+                        <li class="event"></li>
+                        <li class="time-line">12:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">12:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">1:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">1:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">2:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">2:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">3:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">3:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">4:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">4:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">5:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">5:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">6:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">6:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">7:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">7:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">8:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">8:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">9:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">9:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">10:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">10:30 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">11:00 PM</li>
+                        <li class="event"></li>
+                        <li class="time-line">11:30 PM</li>
+                        <li class="event"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
