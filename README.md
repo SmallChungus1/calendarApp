@@ -1,25 +1,15 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/JB3ChsFY)
-# CSE330
-Nicholas Eng - 508413 - NicholasEng26
+Note:
+This was a class project created by me and @NicholasEng26. I was responsible for building the user authentication/registration process, connecting to the 2 APIs used, generating the calendar, and all CRUD operations relating to calendar events using MySql. Nick built the entire frontend, the search feature, and hosted it on EC2
 
-Hanson Li - 508736 - SmallChungus1
-
-Link to project: 
+Live Link to project: 
 http://ec2-3-131-133-126.us-east-2.compute.amazonaws.com/~neng/Module%205%20Calendar/calendar.html
 
-Need to filter for user input! 
 
-Login Details: 
-1. user: Bob | Password: 123
-2. user: John | Password: 12
-3. user: Someguy1 | Password: 123
-4. user: wustl | password: wustl
+How to use: 
 
-Notes: 
+Sign up with a username and password in the "welcome" box. You can then click on a date on the calendar and add/edit events. You can serach for your events in the "Search Events" box. 
 
-Please discount the files in the Unused Files folder. I plan to reuse those files for an independent project later on.
-
-Creative portion: 
+Features:
 
 1. OpenweatherMap API: Made fetch calls to OpenweatherMap API to display the current temperature and weather of St. Louis and displayed it on the calendar. Based on the weather and temperature, it will make a suggestion to the user on how they can plan their day.
 
